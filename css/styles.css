@@ -1,0 +1,35 @@
+body {
+  font-family: Roboto, sans-serif;
+}
+
+header {
+  background-color: #111;
+}
+
+.header.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid red;
+}
+
+.logo-container {
+  width: 15%;
+}
+
+img {
+  width: 100%;
+}
+
+.toggler {
+  color: #fffbf5;
+  background-color: #2b2a29;
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .logo-container {
+    width: 5%;
+  }
+}
