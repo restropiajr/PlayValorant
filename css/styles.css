@@ -17,7 +17,7 @@ body {
   width: 15%;
 }
 
-img {
+.logo-img {
   width: 100%;
 }
 
@@ -51,10 +51,16 @@ a:hover {
   border-radius: 1rem;
 }
 
-/* .header {
-  background-color: #fffbf5;
+.title-container {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.title-img {
+  width: 100%;
 }
 
 .sub-title {
   text-align: center;
-} */
+  margin-top: 0.5rem;
+}
