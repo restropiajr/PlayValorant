@@ -3,7 +3,7 @@ body {
   background-color: #fffbf5;
 }
 
-.background-black {
+header {
   background-color: #111;
 }
 
@@ -35,8 +35,7 @@ body {
 .navbar-links {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #2b2a29;
+  background-color: #111;
 }
 
 a {
@@ -47,11 +46,11 @@ a {
 }
 
 a:hover {
-  background-color: #111;
+  background-color: #2b2a29;
   border-radius: 1rem;
 }
 
-.header {
+.title {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
@@ -69,25 +68,55 @@ a:hover {
   margin-top: 0.5rem;
 }
 
-.section {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #111;
+.video-section {
+  margin-bottom: 2rem;
 }
 
 .video {
   width: 100%;
 }
 
+.description-section {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #111;
+}
+
 h2 {
   font-family: Montserrat, sans-serif;
   color: #fd4556;
-  margin-top: 2rem;
   margin-bottom: 0.5rem;
 }
 
 p {
   color: #53212b;
   line-height: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+footer {
+  background-color: #111;
+}
+
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logos .logo-container {
+  margin: 0.5rem;
+}
+
+.footer p {
+  color: #fffbf5;
+  font-size: 0.75rem;
+}
+
+.notice-description > p {
+  text-align: center;
+}
+
+.teen-esrb-description > p {
+  line-height: 0;
 }

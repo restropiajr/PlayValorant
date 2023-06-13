@@ -17,42 +17,46 @@
 <body>
 
   <header>
-    <div class="background-black">
-      <div class="navbar container">
-        <div class="logo-container">
-          <img class="logo-img" src="images/valorant-logo.png" alt="valorant-logo">
-        </div>
-        <div class="toggler-buttons">
-          <i class="toggler-open fa-solid fa-bars fa-xl"></i>
-          <i class="toggler-close hidden fas fa-times fa-xl"></i>
+    <div class="container">
+      <div class="row">
+        <div class="navbar column-full">
+          <div class="logo-container">
+            <img class="logo-img" src="images/valorant-logo.png" alt="valorant-logo">
+          </div>
+          <div class="toggler-buttons">
+            <i class="toggler-open fa-solid fa-bars fa-xl"></i>
+            <i class="toggler-close hidden fas fa-times fa-xl"></i>
+          </div>
         </div>
       </div>
-      <div class="navbar-links hidden">
-        <a href="#">AGENTS</a>
-        <a href="#">WEAPONS</a>
-        <a href="#">MAPS</a>
-        <a href="#">SKINS</a>
+      <div class="row">
+        <div class="navbar-links column-full hidden">
+          <a href="#">AGENTS</a>
+          <a href="#">WEAPONS</a>
+          <a href="#">MAPS</a>
+          <a href="#">SKINS</a>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="landing-page container" data-view="landing-page">
-
-      <div class="header row">
-        <div class="column-full">
+    <div class="container" data-view="landing-page">
+      <div class="row">
+        <div class="title column-full">
           <div class="title-container">
             <img class="title-img" src="images/valorant-title.png" alt="valorant-title">
           </div>
           <h4 class="sub-title">A 5v5 character-based tactical shooter</h4>
         </div>
       </div>
-
-      <div class="section row">
-        <div class="column-half">
+      <div class="row">
+        <div class="video-section column-half">
           <div class="video-container">
             <img class="video" src="/images/dominate-the-battle.gif" alt="dominate-the-battle">
           </div>
+        </div>
+        <div class="description-section column-half">
           <h2>DOMINATE THE BATTLE</h2>
           <p>Unleash your style and expertise on the global stage of intense competition in Valorant. With 13 rounds at
             your
@@ -63,33 +67,80 @@
             Unranked modes, while also embracing the fast-paced challenges of Deathmatch and Spike Rush.</p>
         </div>
       </div>
-
-      <div class="section row">
-        <div class="column-half">
+      <div class="row">
+        <div class="video-section column-half">
           <div class="video-container">
             <img class="video" src="/images/precise-gunplay.gif" alt="precise-gunplay">
           </div>
+        </div>
+        <div class="description-section column-half">
           <h2>PRECISE GUNPLAY</h2>
-          <p>Valorant places a strong emphasis on accuracy, tactical decision-making, and mechanical skill. The game's gunplay
-          mechanics require players to showcase precision and control while engaging in intense firefights.</p>
+          <p>Valorant places a strong emphasis on accuracy, tactical decision-making, and mechanical skill. The game's
+            gunplay
+            mechanics require players to showcase precision and control while engaging in intense firefights.</p>
         </div>
       </div>
-
-      <div class="section row">
-        <div class="column-half">
+      <div class="row">
+        <div class="video-section column-half">
           <div class="video-container">
             <img class="video" src="/images/unleash-agent-power.gif" alt="dominate-the-battkle">
           </div>
+        </div>
+        <div class="description-section column-half">
           <h2>UNLEASH AGENT POWER</h2>
-          <p>To thrive in the chaos of battle, players must thoughtfully combine their agent's abilities with their impeccable aim
-          and recoil control. Whether it's blinding foes with a perfectly placed flashbang, obliterating enemy defenses with a
-          well-timed explosive, or strategically teleporting to gain the upper hand, every ability is a weapon that can turn the
-          tide of a match.</p>
+          <p>To thrive in the chaos of battle, players must thoughtfully combine their agent's abilities with their
+            impeccable aim
+            and recoil control. Whether it's blinding foes with a perfectly placed flashbang, obliterating enemy
+            defenses with a
+            well-timed explosive, or strategically teleporting to gain the upper hand, every ability is a weapon that
+            can turn the
+            tide of a match.</p>
         </div>
       </div>
-
     </div>
   </main>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="footer column-full">
+          <div class="row">
+            <div class="footer-logos column-full">
+              <div class="logo-container">
+                <img class="logo-img" src="/images/riot-games-logo.png" alt="riot-games-logo">
+              </div>
+              <div class="logo-container">
+                <img class="logo-img" src="images/valorant-logo-title.png" alt="valorant-logo-title">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="notice-description column-full">
+              <p>Notice: This is a mock website and is not affiliated with Valorant or Riot Games. All Valorant assets belong to Riot Games. For
+                official information, visit the Riot Games website.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="footer-logos column-full">
+              <div class="logo-container">
+                <img class="logo-img" src="/images/teen-esrb.png" alt="teen-esrb">
+              </div>
+              <div class="row">
+                <div class="teen-esrb-description column-full">
+                  <p>Blood</p>
+                  <p>Language</p>
+                  <p>Violence</p>
+                  <p>Users Interact</p>
+                  <p>In-Game Purchases</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script src="https://kit.fontawesome.com/84551c9772.js" crossorigin="anonymous"></script>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
