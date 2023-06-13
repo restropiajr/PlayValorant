@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AJAX Project</title>
   <link rel="icon" href="images/valorant-logo.png">
+  <script src="https://kit.fontawesome.com/84551c9772.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
@@ -20,17 +21,23 @@
     <div class="container">
       <div class="row">
         <div class="navbar column-full">
-          <div class="logo-container">
+          <div id="valorant-logo-navbar" class="logo-container">
             <img class="logo-img" src="images/valorant-logo.png" alt="valorant-logo">
           </div>
+          <div class="navbar-links desktop">
+            <a href="#">AGENTS</a>
+            <a href="#">WEAPONS</a>
+            <a href="#">MAPS</a>
+            <a href="#">SKINS</a>
+          </div>
           <div class="toggler-buttons">
-            <i class="toggler-open fa-solid fa-bars fa-xl"></i>
+            <i class="toggler-open fas fa-bars fa-xl"></i>
             <i class="toggler-close hidden fas fa-times fa-xl"></i>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="navbar-links column-full hidden">
+        <div class="navbar-links mobile column-full hidden">
           <a href="#">AGENTS</a>
           <a href="#">WEAPONS</a>
           <a href="#">MAPS</a>
@@ -50,7 +57,7 @@
           <h4 class="sub-title">A 5v5 character-based tactical shooter</h4>
         </div>
       </div>
-      <div class="row">
+      <div class="section row">
         <div class="video-section column-half">
           <div class="video-container">
             <img class="video" src="/images/dominate-the-battle.gif" alt="dominate-the-battle">
@@ -67,7 +74,7 @@
             Unranked modes, while also embracing the fast-paced challenges of Deathmatch and Spike Rush.</p>
         </div>
       </div>
-      <div class="row">
+      <div class="section row">
         <div class="video-section column-half">
           <div class="video-container">
             <img class="video" src="/images/precise-gunplay.gif" alt="precise-gunplay">
@@ -75,12 +82,13 @@
         </div>
         <div class="description-section column-half">
           <h2>PRECISE GUNPLAY</h2>
-          <p>Valorant places a strong emphasis on accuracy, tactical decision-making, and mechanical skill. The game's
-            gunplay
-            mechanics require players to showcase precision and control while engaging in intense firefights.</p>
+          <p>Valorant is a game that prioritizes accuracy, tactical decision-making, and mechanical skill. With its
+            intense firefights and strategic gameplay, players are constantly challenged to exhibit precision and control in
+            their gunplay. The emphasis on accuracy means that every shot counts, requiring players to aim carefully and execute their moves with precision. The tactical decision-making aspect adds depth to the gameplay, as players must analyze the
+            situation, make strategic choices, and adapt their strategies on the fly.</p>
         </div>
       </div>
-      <div class="row">
+      <div class="section row">
         <div class="video-section column-half">
           <div class="video-container">
             <img class="video" src="/images/unleash-agent-power.gif" alt="dominate-the-battkle">
@@ -116,7 +124,8 @@
           </div>
           <div class="row">
             <div class="notice-description column-full">
-              <p>Notice: This is a mock website and is not affiliated with Valorant or Riot Games. All Valorant assets belong to Riot Games. For
+              <p>Notice: This is a mock website and is not affiliated with Valorant or Riot Games. All Valorant assets
+                belong to Riot Games. For
                 official information, visit the Riot Games website.</p>
             </div>
           </div>
@@ -141,7 +150,18 @@
     </div>
   </footer>
 
-  <script src="https://kit.fontawesome.com/84551c9772.js" crossorigin="anonymous"></script>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="scroll-up-button column-full">
+          <a href="#">
+            <i class="fas fa-angle-up fa-xl"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
