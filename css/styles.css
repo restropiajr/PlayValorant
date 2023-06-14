@@ -93,18 +93,16 @@ a:hover {
   margin-bottom: 3rem;
 }
 
-.title-container {
-  width: 100%;
-}
-
 .title-img {
   width: 100%;
 }
 
 .video-section {
-  display: flex;
-  justify-content: center;
   margin-bottom: 2rem;
+}
+
+.video-container {
+  width: 100%;
 }
 
 .video {
@@ -125,6 +123,11 @@ h1 {
 h2 {
   font-family: Montserrat, sans-serif;
   color: #fd4556;
+}
+
+h3 {
+  font-family: Montserrat, sans-serif;
+  color: #bd3944;
 }
 
 h4 {
@@ -194,6 +197,52 @@ footer {
   color: #fffbf5;
 }
 
+[data-view="agents-page"] .title {
+  margin-bottom: 0;
+}
+
+.agent-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.agent-img {
+  width: 100%;
+}
+
+.abilities {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ability-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2b2a29;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem;
+  width: 22.5%;
+  transition: background-color 0.3s ease;
+}
+
+.ability-container:hover {
+  cursor: pointer;
+  background-color: #fd4556;
+}
+
+.ability-img {
+  width: 100%;
+}
+
+.ability-name {
+  color: #fffbf5;
+  margin: 0;
+}
+
 @media screen and (min-width: 768px) {
   .logo-container {
     width: 5%;
@@ -217,6 +266,11 @@ footer {
     margin-bottom: 3rem;
   }
 
+  .video-section {
+    display: flex;
+    justify-content: center;
+  }
+
   .video-container {
     width: 90%;
   }
@@ -230,11 +284,25 @@ footer {
   }
 
   h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
   }
 
   h4 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  #agent-description-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .ability-container {
+    width: 22.5%;
   }
 
   .container {
