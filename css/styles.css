@@ -197,10 +197,6 @@ footer {
   color: #fffbf5;
 }
 
-[data-view="agents-page"] .title {
-  margin-bottom: 0;
-}
-
 .agent-section {
   display: flex;
   flex-direction: column;
@@ -225,12 +221,11 @@ footer {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   padding: 0.25rem;
-  width: 22.5%;
+  width: 20%;
   transition: background-color 0.3s ease;
 }
 
 .ability-container:hover {
-  cursor: pointer;
   background-color: #fd4556;
 }
 
@@ -295,14 +290,8 @@ footer {
     font-size: 1.25rem;
   }
 
-  #agent-description-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
   .ability-container {
-    width: 22.5%;
+    width: 20%;
   }
 
   .container {
