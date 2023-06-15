@@ -4,8 +4,10 @@ const $togglerOpen = document.querySelector('.toggler-open');
 const $togglerClose = document.querySelector('.toggler-close');
 const $navbarLinksMobile = document.querySelector('.navbar-links.mobile');
 const $agentsLink = document.querySelectorAll('.agentsLink');
+const $weaponsLink = document.querySelector('.weaponsLink');
 const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
+const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 
@@ -51,9 +53,15 @@ function viewSwap(view) {
   if (view === 'landing-page') {
     $landingPage.classList.remove('hidden');
     $agentsPage.classList.add('hidden');
+    $weaponsPage.classList.add('hidden');
   } else if (view === 'agents-page') {
-    $agentsPage.classList.remove('hidden');
     $landingPage.classList.add('hidden');
+    $agentsPage.classList.remove('hidden');
+    $weaponsPage.classList.add('hidden');
+  } else if (view === 'weapons-page') {
+    $landingPage.classList.add('hidden');
+    $agentsPage.classList.add('hidden');
+    $weaponsPage.classList.remove('hidden');
   }
 
   $navbarLinksMobile.classList.add('hidden');
@@ -73,6 +81,11 @@ $agentsLink.forEach(link => {
   link.addEventListener('click', () => {
     viewSwap('agents-page');
   });
+});
+
+// Event listener to swap to weapons page
+$weaponsLink.addEventListener('click', () => {
+  viewSwap('weapons-page');
 });
 
 // Event listener to wait for HTML to parse before DOM manipulation
@@ -150,7 +163,7 @@ function renderAgent(agent) {
 
   const $abilityOneName = document.createElement('p');
   $abilityOneName.className = 'ability-name';
-  $abilityOneName.textContent = agent.abilities[0].displayName;
+  $abilityOneName.textContent = agent.abilities[0].displayName.toUpperCase();
   $abilityOneContainer.appendChild($abilityOneName);
 
   const $abilityTwoContainer = document.createElement('div');
@@ -165,7 +178,7 @@ function renderAgent(agent) {
 
   const $abilityTwoName = document.createElement('p');
   $abilityTwoName.className = 'ability-name';
-  $abilityTwoName.textContent = agent.abilities[1].displayName;
+  $abilityTwoName.textContent = agent.abilities[1].displayName.toUpperCase();
   $abilityTwoContainer.appendChild($abilityTwoName);
 
   const $abilityThreeContainer = document.createElement('div');
@@ -180,7 +193,7 @@ function renderAgent(agent) {
 
   const $abilityThreeName = document.createElement('p');
   $abilityThreeName.className = 'ability-name';
-  $abilityThreeName.textContent = agent.abilities[2].displayName;
+  $abilityThreeName.textContent = agent.abilities[2].displayName.toUpperCase();
   $abilityThreeContainer.appendChild($abilityThreeName);
 
   const $abilityFourContainer = document.createElement('div');
@@ -195,7 +208,7 @@ function renderAgent(agent) {
 
   const $abilityFourName = document.createElement('p');
   $abilityFourName.className = 'ability-name';
-  $abilityFourName.textContent = agent.abilities[3].displayName;
+  $abilityFourName.textContent = agent.abilities[3].displayName.toUpperCase();
   $abilityFourContainer.appendChild($abilityFourName);
 
   const $abilityOneDescription = document.createElement('p');
