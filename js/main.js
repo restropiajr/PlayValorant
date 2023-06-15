@@ -111,6 +111,7 @@ $mapsLink.forEach(link => {
 document.addEventListener('DOMContentLoaded', () => {
   getAgentData();
   getWeaponData();
+  getMapData();
   viewSwap(valorantData.view);
 });
 
@@ -419,6 +420,109 @@ function getWeaponData() {
   xhr.addEventListener('load', () => {
     xhr.response.data.forEach(weapon => {
       $weaponsPage.appendChild(renderWeapon(weapon));
+    });
+  });
+  xhr.send();
+}
+
+// renderWeapon function
+function renderMap(map) {
+  const $sectionRow = document.createElement('div');
+  $sectionRow.className = 'section row';
+  $sectionRow.setAttribute('data-map', map.displayName.toLowerCase());
+
+  const $mapSectionColFull = document.createElement('div');
+  $mapSectionColFull.className = 'map-section column-full';
+  $sectionRow.appendChild($mapSectionColFull);
+
+  const $mapImgsRow = document.createElement('div');
+  $mapImgsRow.className = 'map-imgs row';
+  $mapSectionColFull.appendChild($mapImgsRow);
+
+  const $mapSplashContainer = document.createElement('div');
+  $mapSplashContainer.className = 'map-splash-container column-half';
+  $mapImgsRow.appendChild($mapSplashContainer);
+
+  const $mapSplashImg = document.createElement('img');
+  $mapSplashImg.className = 'map-splash-img';
+  $mapSplashImg.setAttribute('src', map.splash);
+  $mapSplashImg.setAttribute('alt', map.displayName.toLowerCase());
+  $mapSplashContainer.appendChild($mapSplashImg);
+
+  const $mapLayoutContainer = document.createElement('div');
+  $mapLayoutContainer.className = 'map-layout-container column-half';
+  $mapImgsRow.appendChild($mapLayoutContainer);
+
+  const $mapLayoutImg = document.createElement('img');
+  $mapLayoutImg.className = 'map-layout-img';
+  $mapLayoutImg.setAttribute('src', map.displayIcon);
+  $mapLayoutImg.setAttribute('alt', `${map.displayName.toLowerCase()}-layout`);
+  $mapLayoutContainer.appendChild($mapLayoutImg);
+
+  const $mapName = document.createElement('h2');
+  $mapName.className = 'map-name';
+  $mapName.textContent = map.displayName.toUpperCase();
+  $mapSectionColFull.appendChild($mapName);
+
+  const $descriptionSectionColFull = document.createElement('div');
+  $descriptionSectionColFull.className = 'description-section column-full';
+  $sectionRow.appendChild($descriptionSectionColFull);
+
+  const $descriptionTitle = document.createElement('h3');
+  $descriptionTitle.textContent = 'DESCRIPTION';
+  $descriptionSectionColFull.appendChild($descriptionTitle);
+
+  const $mapDescription = document.createElement('p');
+  let mapDescription = null;
+  switch (map.displayName) {
+    case 'Ascent':
+      mapDescription = 'Ascent is a city-themed map set in Italy. It features a balance of open spaces and tight corners, allowing for both long-range and close-quarters engagements. The map\'s unique feature is its doors that can be opened or closed to control sightlines.';
+      break;
+    case 'Split':
+      mapDescription = 'Split is an urban map set in an unspecified East Asian city. It consists of a large central area with a vertical split, requiring players to navigate through narrow pathways, ropes, and elevated platforms. It offers challenging gameplay for both attackers and defenders.';
+      break;
+    case 'Fracture':
+      mapDescription = 'Fracture is a futuristic map with a distinct fracture running through its center. It offers a unique layout and verticality, encouraging dynamic gameplay and strategic positioning.';
+      break;
+    case 'Bind':
+      mapDescription = 'Bind is a desert-themed map set in Morocco. It is known for its narrow corridors, tight angles, and multiple teleportation opportunities, providing various strategies for players.';
+      break;
+    case 'Breeze':
+      mapDescription = 'Breeze: Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
+      break;
+    case 'Lotus':
+      mapDescription = 'Lotus: Lotus is a newly introduced map in Valorant, set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
+      break;
+    case 'Pearl':
+      mapDescription = 'Pearl is another newly introduced map in Valorant, set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
+      break;
+    case 'Icebox':
+      mapDescription = 'Icebox is a frosty, Arctic-themed map set in a remote location. It features multiple ziplines, verticality, and a mix of open areas and narrow hallways.';
+      break;
+    case 'Haven':
+      mapDescription = 'Haven is a large, three-site map that provides a variety of options for attackers and defenders. It offers a mix of open spaces, tight corridors, and elevated platforms, allowing for versatile strategies and dynamic encounters.';
+      break;
+    default:
+      mapDescription = 'Unknown map.';
+      break;
+  }
+
+  $mapDescription.textContent = mapDescription;
+  $descriptionSectionColFull.appendChild($mapDescription);
+
+  return $sectionRow;
+}
+
+// getMapData function
+function getMapData() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/maps');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    xhr.response.data.forEach(map => {
+      if (map.displayName !== 'The Range') {
+        $mapsPage.appendChild(renderMap(map));
+      }
     });
   });
   xhr.send();
