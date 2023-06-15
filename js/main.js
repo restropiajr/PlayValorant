@@ -6,9 +6,11 @@ const $navbarLinksMobile = document.querySelector('.navbar-links.mobile');
 const $agentsLink = document.querySelectorAll('.agentsLink');
 const $weaponsLink = document.querySelectorAll('.weaponsLink');
 const $mapsLink = document.querySelectorAll('.mapsLink');
+const $skinsLink = document.querySelectorAll('.skinsLink');
 const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
+const $skinsPage = document.querySelector('[data-view="skins-page"]');
 const $mapsPage = document.querySelector('[data-view="maps-page"]');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
@@ -57,21 +59,31 @@ function viewSwap(view) {
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
   } else if (view === 'agents-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.remove('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
   } else if (view === 'weapons-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.remove('hidden');
     $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
   } else if (view === 'maps-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.remove('hidden');
+    $skinsPage.classList.add('hidden');
+  } else if (view === 'skins-page') {
+    $landingPage.classList.add('hidden');
+    $agentsPage.classList.add('hidden');
+    $weaponsPage.classList.add('hidden');
+    $mapsPage.classList.add('hidden');
+    $skinsPage.classList.remove('hidden');
   }
 
   $navbarLinksMobile.classList.add('hidden');
@@ -104,6 +116,13 @@ $weaponsLink.forEach(link => {
 $mapsLink.forEach(link => {
   link.addEventListener('click', () => {
     viewSwap('maps-page');
+  });
+});
+
+// Event listener to swap to maps page
+$skinsLink.forEach(link => {
+  link.addEventListener('click', () => {
+    viewSwap('skins-page');
   });
 });
 
