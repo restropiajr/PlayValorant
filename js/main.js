@@ -9,16 +9,6 @@ const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 
-// const $fade = document.querySelector('[data-agent="fade"]');
-// const $abilityOne = document.querySelector('.ability-one');
-// const $abilityTwo = document.querySelector('.ability-two');
-// const $abilityThree = document.querySelector('.ability-three');
-// const $abilityFour = document.querySelector('.ability-four');
-// const $abilityOneDescription = document.querySelector('.ability-one-description');
-// const $abilityTwoDescription = document.querySelector('.ability-two-description');
-// const $abilityThreeDescription = document.querySelector('.ability-three-description');
-// const $abilityFourDescription = document.querySelector('.ability-four-description');
-
 // navbarToggler function
 function navbarToggler(event) {
   if (event.target === $togglerOpen) {
@@ -69,6 +59,7 @@ function viewSwap(view) {
   $navbarLinksMobile.classList.add('hidden');
   $togglerOpen.classList.remove('hidden');
   $togglerClose.classList.add('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   valorantData.view = view;
 }
 
@@ -89,38 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
   getAgentData();
   viewSwap(valorantData.view);
 });
-
-// // showAbilityDescription function
-// function showAbilityDescription(event) {
-//   if (event.target === $abilityOne) {
-//     $abilityOneDescription.classList.remove('hidden');
-//   } else if (event.target === $abilityTwo) {
-//     $abilityTwoDescription.classList.remove('hidden');
-//   } else if (event.target === $abilityThree) {
-//     $abilityThreeDescription.classList.remove('hidden');
-//   } else if (event.target === $abilityFour) {
-//     $abilityFourDescription.classList.remove('hidden');
-//   }
-// }
-
-// // Event listener to show ability description when hovered on ability
-// $abilities.addEventListener('mouseover', showAbilityDescription);
-
-// // unShowAbilityDescription function
-// function unShowAbilityDescription(event) {
-//   if (event.target === $abilityOne) {
-//     $abilityOneDescription.classList.add('hidden');
-//   } else if (event.target === $abilityTwo) {
-//     $abilityTwoDescription.classList.add('hidden');
-//   } else if (event.target === $abilityThree) {
-//     $abilityThreeDescription.classList.add('hidden');
-//   } else if (event.target === $abilityFour) {
-//     $abilityFourDescription.classList.add('hidden');
-//   }
-// }
-
-// // Event listener to show ability description when hovered on ability
-// $abilities.addEventListener('mouseout', unShowAbilityDescription);
 
 // renderAgent function
 function renderAgent(agent) {
