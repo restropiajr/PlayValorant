@@ -4,7 +4,7 @@ const $togglerOpen = document.querySelector('.toggler-open');
 const $togglerClose = document.querySelector('.toggler-close');
 const $navbarLinksMobile = document.querySelector('.navbar-links.mobile');
 const $agentsLink = document.querySelectorAll('.agentsLink');
-const $weaponsLink = document.querySelector('.weaponsLink');
+const $weaponsLink = document.querySelectorAll('.weaponsLink');
 const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
@@ -84,13 +84,16 @@ $agentsLink.forEach(link => {
 });
 
 // Event listener to swap to weapons page
-$weaponsLink.addEventListener('click', () => {
-  viewSwap('weapons-page');
+$weaponsLink.forEach(link => {
+  link.addEventListener('click', () => {
+    viewSwap('weapons-page');
+  });
 });
 
 // Event listener to wait for HTML to parse before DOM manipulation
 document.addEventListener('DOMContentLoaded', () => {
   getAgentData();
+  getWeaponData();
   viewSwap(valorantData.view);
 });
 
@@ -277,6 +280,105 @@ function getAgentData() {
       if (agent.isPlayableCharacter === true) {
         $agentsPage.appendChild(renderAgent(agent));
       }
+    });
+  });
+  xhr.send();
+}
+
+// renderWeapon function
+function renderWeapon(weapon) {
+  const $sectionRow = document.createElement('div');
+  $sectionRow.className = 'section row';
+  $sectionRow.setAttribute('data-weapon', weapon.displayName.toLowerCase());
+
+  const $weaponSectionColHalf = document.createElement('div');
+  $weaponSectionColHalf.className = 'weapon-section column-half';
+  $sectionRow.appendChild($weaponSectionColHalf);
+
+  const $weaponContainer = document.createElement('div');
+  $weaponContainer.className = 'weapon-container';
+  $weaponSectionColHalf.appendChild($weaponContainer);
+
+  const $weaponImg = document.createElement('img');
+  $weaponImg.className = 'weapon-img';
+  $weaponImg.setAttribute('src', weapon.displayIcon);
+  $weaponImg.setAttribute('alt', weapon.displayName);
+  $weaponContainer.appendChild($weaponImg);
+
+  const $weaponName = document.createElement('h2');
+  $weaponName.className = 'weapon-name';
+  $weaponName.textContent = weapon.displayName.toUpperCase();
+  $weaponSectionColHalf.appendChild($weaponName);
+
+  const $descriptionSectionColHalf = document.createElement('div');
+  $descriptionSectionColHalf.className = 'description-section column-half';
+  $sectionRow.appendChild($descriptionSectionColHalf);
+
+  const $categoryTitle = document.createElement('h3');
+  $categoryTitle.textContent = 'CATEGORY';
+  $descriptionSectionColHalf.appendChild($categoryTitle);
+
+  const $categoryDescription = document.createElement('p');
+  $categoryDescription.textContent = weapon.category.replace('EEquippableCategory::', '');
+  $descriptionSectionColHalf.appendChild($categoryDescription);
+
+  const $descriptionTitle = document.createElement('h3');
+  $descriptionTitle.textContent = 'DESCRIPTION';
+  $descriptionSectionColHalf.appendChild($descriptionTitle);
+
+  const $weaponDescription = document.createElement('p');
+  let weaponDescription = null;
+  if (weapon.displayName === 'Odin') {
+    weaponDescription = 'A powerful LMG with high damage, high rate of fire, and a large magazine capacity for breaking through defenses.';
+  } else if (weapon.displayName === 'Ares') {
+    weaponDescription = 'A heavy machine gun with a high rate of fire, suitable for suppressing fire and holding positions.';
+  } else if (weapon.displayName === 'Vandal') {
+    weaponDescription = 'A high-damage assault rifle with moderate recoil, capable of eliminating enemies with a single headshot.';
+  } else if (weapon.displayName === 'Bulldog') {
+    weaponDescription = 'A rifle with burst fire mode, offering moderate recoil and decent damage.';
+  } else if (weapon.displayName === 'Phantom') {
+    weaponDescription = 'A fully automatic rifle with low recoil and good accuracy, versatile for close to medium-range encounters.';
+  } else if (weapon.displayName === 'Judge') {
+    weaponDescription = 'A devastating shotgun known for its close-range stopping power and rapid fire rate.';
+  } else if (weapon.displayName === 'Bucky') {
+    weaponDescription = 'A shotgun with a wider spread and moderate damage, effective at close range.';
+  } else if (weapon.displayName === 'Frenzy') {
+    weaponDescription = 'A compact SMG with a high rate of fire but reduced accuracy.';
+  } else if (weapon.displayName === 'Classic') {
+    weaponDescription = 'A versatile starter pistol with burst fire mode for close-range encounters.';
+  } else if (weapon.displayName === 'Ghost') {
+    weaponDescription = 'A silenced pistol with low recoil and good accuracy, ideal for stealthy plays.';
+  } else if (weapon.displayName === 'Sheriff') {
+    weaponDescription = 'A heavy revolver capable of eliminating enemies with a single headshot.';
+  } else if (weapon.displayName === 'Shorty') {
+    weaponDescription = 'A shotgun with limited range but high damage potential at close quarters.';
+  } else if (weapon.displayName === 'Operator') {
+    weaponDescription = 'A powerful sniper rifle that guarantees a one-shot kill regardless of the body part hit.';
+  } else if (weapon.displayName === 'Guardian') {
+    weaponDescription = 'A semi-automatic rifle with high accuracy, suitable for tapping and controlled bursts.';
+  } else if (weapon.displayName === 'Marshal') {
+    weaponDescription = 'A sniper rifle that can eliminate enemies with a single shot to the chest or head.';
+  } else if (weapon.displayName === 'Spectre') {
+    weaponDescription = 'A versatile SMG with good accuracy and manageable recoil for medium-range combat.';
+  } else if (weapon.displayName === 'Stinger') {
+    weaponDescription = 'An SMG with a fast rate of fire, suitable for close to medium-range engagements.';
+  } else if (weapon.displayName === 'Melee') {
+    weaponDescription = 'A lethal melee weapon for silent and swift takedowns, offering increased movement speed for agile plays.';
+  }
+  $weaponDescription.textContent = weaponDescription;
+  $descriptionSectionColHalf.appendChild($weaponDescription);
+
+  return $sectionRow;
+}
+
+// getWeaponData function
+function getWeaponData() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/weapons');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    xhr.response.data.forEach(weapon => {
+      $weaponsPage.appendChild(renderWeapon(weapon));
     });
   });
   xhr.send();

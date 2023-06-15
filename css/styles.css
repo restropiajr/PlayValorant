@@ -42,8 +42,14 @@ header {
   width: 100%;
 }
 
+.valorant-logo-navbar {
+  border-radius: 1rem;
+  transition: background-color 0.3s ease;
+}
+
 .valorant-logo-navbar:hover {
   cursor: pointer;
+  background-color: #2b2a29;
 }
 
 .toggler-buttons {
@@ -99,10 +105,6 @@ a:hover {
 
 .video-section {
   margin-bottom: 2rem;
-}
-
-.video-container {
-  width: 100%;
 }
 
 .video {
@@ -197,15 +199,26 @@ footer {
   color: #fffbf5;
 }
 
-.agent-section {
+.weapon-title {
+  margin-bottom: 7rem;
+}
+
+.agent-section,
+.weapon-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
 }
 
-.agent-img {
+.agent-img,
+.ability-img,
+.weapon-img {
   width: 100%;
+}
+
+.weapon-section > h2 {
+  margin-top: 1rem;
 }
 
 .abilities {
@@ -229,10 +242,6 @@ footer {
 
 .ability-container:hover {
   background-color: #fd4556;
-}
-
-.ability-img {
-  width: 100%;
 }
 
 .ability-name {
@@ -295,6 +304,10 @@ footer {
 
   h4 {
     font-size: 1.25rem;
+  }
+
+  .weapon-title {
+    margin-bottom: 3rem;
   }
 
   .container {
