@@ -5,9 +5,11 @@ const $togglerClose = document.querySelector('.toggler-close');
 const $navbarLinksMobile = document.querySelector('.navbar-links.mobile');
 const $agentsLink = document.querySelectorAll('.agentsLink');
 const $weaponsLink = document.querySelectorAll('.weaponsLink');
+const $mapsLink = document.querySelectorAll('.mapsLink');
 const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
+const $mapsPage = document.querySelector('[data-view="maps-page"]');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 
@@ -54,14 +56,22 @@ function viewSwap(view) {
     $landingPage.classList.remove('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
+    $mapsPage.classList.add('hidden');
   } else if (view === 'agents-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.remove('hidden');
     $weaponsPage.classList.add('hidden');
+    $mapsPage.classList.add('hidden');
   } else if (view === 'weapons-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.remove('hidden');
+    $mapsPage.classList.add('hidden');
+  } else if (view === 'maps-page') {
+    $landingPage.classList.add('hidden');
+    $agentsPage.classList.add('hidden');
+    $weaponsPage.classList.add('hidden');
+    $mapsPage.classList.remove('hidden');
   }
 
   $navbarLinksMobile.classList.add('hidden');
@@ -90,10 +100,18 @@ $weaponsLink.forEach(link => {
   });
 });
 
+// Event listener to swap to maps page
+$mapsLink.forEach(link => {
+  link.addEventListener('click', () => {
+    viewSwap('maps-page');
+  });
+});
+
 // Event listener to wait for HTML to parse before DOM manipulation
 document.addEventListener('DOMContentLoaded', () => {
   getAgentData();
   getWeaponData();
+  getMapData();
   viewSwap(valorantData.view);
 });
 
@@ -328,43 +346,66 @@ function renderWeapon(weapon) {
 
   const $weaponDescription = document.createElement('p');
   let weaponDescription = null;
-  if (weapon.displayName === 'Odin') {
-    weaponDescription = 'A powerful LMG with high damage, high rate of fire, and a large magazine capacity for breaking through defenses.';
-  } else if (weapon.displayName === 'Ares') {
-    weaponDescription = 'A heavy machine gun with a high rate of fire, suitable for suppressing fire and holding positions.';
-  } else if (weapon.displayName === 'Vandal') {
-    weaponDescription = 'A high-damage assault rifle with moderate recoil, capable of eliminating enemies with a single headshot.';
-  } else if (weapon.displayName === 'Bulldog') {
-    weaponDescription = 'A rifle with burst fire mode, offering moderate recoil and decent damage.';
-  } else if (weapon.displayName === 'Phantom') {
-    weaponDescription = 'A fully automatic rifle with low recoil and good accuracy, versatile for close to medium-range encounters.';
-  } else if (weapon.displayName === 'Judge') {
-    weaponDescription = 'A devastating shotgun known for its close-range stopping power and rapid fire rate.';
-  } else if (weapon.displayName === 'Bucky') {
-    weaponDescription = 'A shotgun with a wider spread and moderate damage, effective at close range.';
-  } else if (weapon.displayName === 'Frenzy') {
-    weaponDescription = 'A compact SMG with a high rate of fire but reduced accuracy.';
-  } else if (weapon.displayName === 'Classic') {
-    weaponDescription = 'A versatile starter pistol with burst fire mode for close-range encounters.';
-  } else if (weapon.displayName === 'Ghost') {
-    weaponDescription = 'A silenced pistol with low recoil and good accuracy, ideal for stealthy plays.';
-  } else if (weapon.displayName === 'Sheriff') {
-    weaponDescription = 'A heavy revolver capable of eliminating enemies with a single headshot.';
-  } else if (weapon.displayName === 'Shorty') {
-    weaponDescription = 'A shotgun with limited range but high damage potential at close quarters.';
-  } else if (weapon.displayName === 'Operator') {
-    weaponDescription = 'A powerful sniper rifle that guarantees a one-shot kill regardless of the body part hit.';
-  } else if (weapon.displayName === 'Guardian') {
-    weaponDescription = 'A semi-automatic rifle with high accuracy, suitable for tapping and controlled bursts.';
-  } else if (weapon.displayName === 'Marshal') {
-    weaponDescription = 'A sniper rifle that can eliminate enemies with a single shot to the chest or head.';
-  } else if (weapon.displayName === 'Spectre') {
-    weaponDescription = 'A versatile SMG with good accuracy and manageable recoil for medium-range combat.';
-  } else if (weapon.displayName === 'Stinger') {
-    weaponDescription = 'An SMG with a fast rate of fire, suitable for close to medium-range engagements.';
-  } else if (weapon.displayName === 'Melee') {
-    weaponDescription = 'A lethal melee weapon for silent and swift takedowns, offering increased movement speed for agile plays.';
+  switch (weapon.displayName) {
+    case 'Odin':
+      weaponDescription = 'A powerful LMG with high damage, high rate of fire, and a large magazine capacity for breaking through defenses.';
+      break;
+    case 'Ares':
+      weaponDescription = 'A heavy machine gun with a high rate of fire, suitable for suppressing fire and holding positions.';
+      break;
+    case 'Vandal':
+      weaponDescription = 'A high-damage assault rifle with moderate recoil, capable of eliminating enemies with a single headshot.';
+      break;
+    case 'Bulldog':
+      weaponDescription = 'A rifle with burst fire mode, offering moderate recoil and decent damage.';
+      break;
+    case 'Phantom':
+      weaponDescription = 'A fully automatic rifle with low recoil and good accuracy, versatile for close to medium-range encounters.';
+      break;
+    case 'Judge':
+      weaponDescription = 'A devastating shotgun known for its close-range stopping power and rapid fire rate.';
+      break;
+    case 'Bucky':
+      weaponDescription = 'A shotgun with a wider spread and moderate damage, effective at close range.';
+      break;
+    case 'Frenzy':
+      weaponDescription = 'A compact SMG with a high rate of fire but reduced accuracy.';
+      break;
+    case 'Classic':
+      weaponDescription = 'A versatile starter pistol with burst fire mode for close-range encounters.';
+      break;
+    case 'Ghost':
+      weaponDescription = 'A silenced pistol with low recoil and good accuracy, ideal for stealthy plays.';
+      break;
+    case 'Sheriff':
+      weaponDescription = 'A heavy revolver capable of eliminating enemies with a single headshot.';
+      break;
+    case 'Shorty':
+      weaponDescription = 'A shotgun with limited range but high damage potential at close quarters.';
+      break;
+    case 'Operator':
+      weaponDescription = 'A powerful sniper rifle that guarantees a one-shot kill regardless of the body part hit.';
+      break;
+    case 'Guardian':
+      weaponDescription = 'A semi-automatic rifle with high accuracy, suitable for tapping and controlled bursts.';
+      break;
+    case 'Marshal':
+      weaponDescription = 'A sniper rifle that can eliminate enemies with a single shot to the chest or head.';
+      break;
+    case 'Spectre':
+      weaponDescription = 'A versatile SMG with good accuracy and manageable recoil for medium-range combat.';
+      break;
+    case 'Stinger':
+      weaponDescription = 'An SMG with a fast rate of fire, suitable for close to medium-range engagements.';
+      break;
+    case 'Melee':
+      weaponDescription = 'A lethal melee weapon for silent and swift takedowns, offering increased movement speed for agile plays.';
+      break;
+    default:
+      weaponDescription = 'Unknown weapon.';
+      break;
   }
+
   $weaponDescription.textContent = weaponDescription;
   $descriptionSectionColHalf.appendChild($weaponDescription);
 
@@ -379,6 +420,109 @@ function getWeaponData() {
   xhr.addEventListener('load', () => {
     xhr.response.data.forEach(weapon => {
       $weaponsPage.appendChild(renderWeapon(weapon));
+    });
+  });
+  xhr.send();
+}
+
+// renderWeapon function
+function renderMap(map) {
+  const $sectionRow = document.createElement('div');
+  $sectionRow.className = 'section row';
+  $sectionRow.setAttribute('data-map', map.displayName.toLowerCase());
+
+  const $mapSectionColFull = document.createElement('div');
+  $mapSectionColFull.className = 'map-section column-full';
+  $sectionRow.appendChild($mapSectionColFull);
+
+  const $mapImgsRow = document.createElement('div');
+  $mapImgsRow.className = 'map-imgs row';
+  $mapSectionColFull.appendChild($mapImgsRow);
+
+  const $mapSplashContainer = document.createElement('div');
+  $mapSplashContainer.className = 'map-splash-container column-half';
+  $mapImgsRow.appendChild($mapSplashContainer);
+
+  const $mapSplashImg = document.createElement('img');
+  $mapSplashImg.className = 'map-splash-img';
+  $mapSplashImg.setAttribute('src', map.splash);
+  $mapSplashImg.setAttribute('alt', map.displayName.toLowerCase());
+  $mapSplashContainer.appendChild($mapSplashImg);
+
+  const $mapLayoutContainer = document.createElement('div');
+  $mapLayoutContainer.className = 'map-layout-container column-half';
+  $mapImgsRow.appendChild($mapLayoutContainer);
+
+  const $mapLayoutImg = document.createElement('img');
+  $mapLayoutImg.className = 'map-layout-img';
+  $mapLayoutImg.setAttribute('src', map.displayIcon);
+  $mapLayoutImg.setAttribute('alt', `${map.displayName.toLowerCase()}-layout`);
+  $mapLayoutContainer.appendChild($mapLayoutImg);
+
+  const $mapName = document.createElement('h2');
+  $mapName.className = 'map-name';
+  $mapName.textContent = map.displayName.toUpperCase();
+  $mapSectionColFull.appendChild($mapName);
+
+  const $descriptionSectionColFull = document.createElement('div');
+  $descriptionSectionColFull.className = 'description-section column-full';
+  $sectionRow.appendChild($descriptionSectionColFull);
+
+  const $descriptionTitle = document.createElement('h3');
+  $descriptionTitle.textContent = 'DESCRIPTION';
+  $descriptionSectionColFull.appendChild($descriptionTitle);
+
+  const $mapDescription = document.createElement('p');
+  let mapDescription = null;
+  switch (map.displayName) {
+    case 'Ascent':
+      mapDescription = 'Ascent is a city-themed map set in Italy. It features a balance of open spaces and tight corners, allowing for both long-range and close-quarters engagements. The map\'s unique feature is its doors that can be opened or closed to control sightlines.';
+      break;
+    case 'Split':
+      mapDescription = 'Split is an urban map set in an unspecified East Asian city. It consists of a large central area with a vertical split, requiring players to navigate through narrow pathways, ropes, and elevated platforms. It offers challenging gameplay for both attackers and defenders.';
+      break;
+    case 'Fracture':
+      mapDescription = 'Fracture is a futuristic map with a distinct fracture running through its center. It offers a unique layout and verticality, encouraging dynamic gameplay and strategic positioning.';
+      break;
+    case 'Bind':
+      mapDescription = 'Bind is a desert-themed map set in Morocco. It is known for its narrow corridors, tight angles, and multiple teleportation opportunities, providing various strategies for players.';
+      break;
+    case 'Breeze':
+      mapDescription = 'Breeze: Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
+      break;
+    case 'Lotus':
+      mapDescription = 'Lotus: Lotus is a newly introduced map in Valorant, set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
+      break;
+    case 'Pearl':
+      mapDescription = 'Pearl is another newly introduced map in Valorant, set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
+      break;
+    case 'Icebox':
+      mapDescription = 'Icebox is a frosty, Arctic-themed map set in a remote location. It features multiple ziplines, verticality, and a mix of open areas and narrow hallways.';
+      break;
+    case 'Haven':
+      mapDescription = 'Haven is a large, three-site map that provides a variety of options for attackers and defenders. It offers a mix of open spaces, tight corridors, and elevated platforms, allowing for versatile strategies and dynamic encounters.';
+      break;
+    default:
+      mapDescription = 'Unknown map.';
+      break;
+  }
+
+  $mapDescription.textContent = mapDescription;
+  $descriptionSectionColFull.appendChild($mapDescription);
+
+  return $sectionRow;
+}
+
+// getMapData function
+function getMapData() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/maps');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    xhr.response.data.forEach(map => {
+      if (map.displayName !== 'The Range') {
+        $mapsPage.appendChild(renderMap(map));
+      }
     });
   });
   xhr.send();
