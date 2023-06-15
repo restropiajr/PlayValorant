@@ -26,8 +26,4 @@
   .column-half {
     width: 50%;
   }
-
-  .column-third {
-    width: calc(100%/3);
-  }
 }
