@@ -8,15 +8,16 @@ const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
-const $abilities = document.querySelector('.abilities');
-const $abilityOne = document.querySelector('.ability-one');
-const $abilityTwo = document.querySelector('.ability-two');
-const $abilityThree = document.querySelector('.ability-three');
-const $abilityFour = document.querySelector('.ability-four');
-const $abilityOneDescription = document.querySelector('.ability-one-description');
-const $abilityTwoDescription = document.querySelector('.ability-two-description');
-const $abilityThreeDescription = document.querySelector('.ability-three-description');
-const $abilityFourDescription = document.querySelector('.ability-four-description');
+
+// const $fade = document.querySelector('[data-agent="fade"]');
+// const $abilityOne = document.querySelector('.ability-one');
+// const $abilityTwo = document.querySelector('.ability-two');
+// const $abilityThree = document.querySelector('.ability-three');
+// const $abilityFour = document.querySelector('.ability-four');
+// const $abilityOneDescription = document.querySelector('.ability-one-description');
+// const $abilityTwoDescription = document.querySelector('.ability-two-description');
+// const $abilityThreeDescription = document.querySelector('.ability-three-description');
+// const $abilityFourDescription = document.querySelector('.ability-four-description');
 
 // navbarToggler function
 function navbarToggler(event) {
@@ -85,45 +86,47 @@ $agentsLink.forEach(link => {
 
 // Event listener to wait for HTML to parse before DOM manipulation
 document.addEventListener('DOMContentLoaded', () => {
+  getAgentData();
   viewSwap(valorantData.view);
 });
 
-// showAbilityDescription function
-function showAbilityDescription(event) {
-  if (event.target === $abilityOne) {
-    $abilityOneDescription.classList.remove('hidden');
-  } else if (event.target === $abilityTwo) {
-    $abilityTwoDescription.classList.remove('hidden');
-  } else if (event.target === $abilityThree) {
-    $abilityThreeDescription.classList.remove('hidden');
-  } else if (event.target === $abilityFour) {
-    $abilityFourDescription.classList.remove('hidden');
-  }
-}
+// // showAbilityDescription function
+// function showAbilityDescription(event) {
+//   if (event.target === $abilityOne) {
+//     $abilityOneDescription.classList.remove('hidden');
+//   } else if (event.target === $abilityTwo) {
+//     $abilityTwoDescription.classList.remove('hidden');
+//   } else if (event.target === $abilityThree) {
+//     $abilityThreeDescription.classList.remove('hidden');
+//   } else if (event.target === $abilityFour) {
+//     $abilityFourDescription.classList.remove('hidden');
+//   }
+// }
 
-// Event listener to show ability description when hovered on ability
-$abilities.addEventListener('mouseover', showAbilityDescription);
+// // Event listener to show ability description when hovered on ability
+// $abilities.addEventListener('mouseover', showAbilityDescription);
 
-// unShowAbilityDescription function
-function unShowAbilityDescription(event) {
-  if (event.target === $abilityOne) {
-    $abilityOneDescription.classList.add('hidden');
-  } else if (event.target === $abilityTwo) {
-    $abilityTwoDescription.classList.add('hidden');
-  } else if (event.target === $abilityThree) {
-    $abilityThreeDescription.classList.add('hidden');
-  } else if (event.target === $abilityFour) {
-    $abilityFourDescription.classList.add('hidden');
-  }
-}
+// // unShowAbilityDescription function
+// function unShowAbilityDescription(event) {
+//   if (event.target === $abilityOne) {
+//     $abilityOneDescription.classList.add('hidden');
+//   } else if (event.target === $abilityTwo) {
+//     $abilityTwoDescription.classList.add('hidden');
+//   } else if (event.target === $abilityThree) {
+//     $abilityThreeDescription.classList.add('hidden');
+//   } else if (event.target === $abilityFour) {
+//     $abilityFourDescription.classList.add('hidden');
+//   }
+// }
 
-// Event listener to show ability description when hovered on ability
-$abilities.addEventListener('mouseout', unShowAbilityDescription);
+// // Event listener to show ability description when hovered on ability
+// $abilities.addEventListener('mouseout', unShowAbilityDescription);
 
-// agentRender function
-function agentRender(agent) {
+// renderAgent function
+function renderAgent(agent) {
   const $sectionRow = document.createElement('div');
   $sectionRow.className = 'section row';
+  $sectionRow.setAttribute('data-agent', agent.displayName.toLowerCase());
 
   const $agentSectionColHalf = document.createElement('div');
   $agentSectionColHalf.className = 'agent-section column-half';
@@ -255,6 +258,7 @@ function agentRender(agent) {
   $abilityFourInformation.className = 'ability-four-description hidden';
   $abilityFourInformation.textContent = agent.abilities[3].description;
   $descriptionSectionColHalf.appendChild($abilityFourInformation);
+
   return $sectionRow;
 }
 
@@ -266,11 +270,9 @@ function getAgentData() {
   xhr.addEventListener('load', () => {
     xhr.response.data.forEach(agent => {
       if (agent.isPlayableCharacter === true) {
-        agentRender(agent);
+        $agentsPage.appendChild(renderAgent(agent));
       }
     });
   });
   xhr.send();
 }
-
-getAgentData();
