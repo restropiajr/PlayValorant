@@ -209,6 +209,7 @@ footer {
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+  padding: 1rem;
 }
 
 .agent-img,
@@ -316,9 +317,5 @@ footer {
 
   .column-half {
     width: 50%;
-  }
-
-  .column-third {
-    width: calc(100%/3);
   }
 }
