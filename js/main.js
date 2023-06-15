@@ -59,7 +59,7 @@ function viewSwap(view) {
   $navbarLinksMobile.classList.add('hidden');
   $togglerOpen.classList.remove('hidden');
   $togglerClose.classList.add('hidden');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0 });
   valorantData.view = view;
 }
 
@@ -198,25 +198,58 @@ function renderAgent(agent) {
   $abilityFourName.textContent = agent.abilities[3].displayName;
   $abilityFourContainer.appendChild($abilityFourName);
 
-  const $abilityOneInformation = document.createElement('p');
-  $abilityOneInformation.className = 'ability-one-description hidden';
-  $abilityOneInformation.textContent = agent.abilities[0].description;
-  $descriptionSectionColHalf.appendChild($abilityOneInformation);
+  const $abilityOneDescription = document.createElement('p');
+  $abilityOneDescription.className = 'ability-one-description hidden';
+  $abilityOneDescription.textContent = agent.abilities[0].description;
+  $descriptionSectionColHalf.appendChild($abilityOneDescription);
 
-  const $abilityTwoInformation = document.createElement('p');
-  $abilityTwoInformation.className = 'ability-two-description hidden';
-  $abilityTwoInformation.textContent = agent.abilities[1].description;
-  $descriptionSectionColHalf.appendChild($abilityTwoInformation);
+  const $abilityTwoDescription = document.createElement('p');
+  $abilityTwoDescription.className = 'ability-two-description hidden';
+  $abilityTwoDescription.textContent = agent.abilities[1].description;
+  $descriptionSectionColHalf.appendChild($abilityTwoDescription);
 
-  const $abilityThreeInformation = document.createElement('p');
-  $abilityThreeInformation.className = 'ability-three-description hidden';
-  $abilityThreeInformation.textContent = agent.abilities[2].description;
-  $descriptionSectionColHalf.appendChild($abilityThreeInformation);
+  const $abilityThreeDescription = document.createElement('p');
+  $abilityThreeDescription.className = 'ability-three-description hidden';
+  $abilityThreeDescription.textContent = agent.abilities[2].description;
+  $descriptionSectionColHalf.appendChild($abilityThreeDescription);
 
-  const $abilityFourInformation = document.createElement('p');
-  $abilityFourInformation.className = 'ability-four-description hidden';
-  $abilityFourInformation.textContent = agent.abilities[3].description;
-  $descriptionSectionColHalf.appendChild($abilityFourInformation);
+  const $abilityFourDescription = document.createElement('p');
+  $abilityFourDescription.className = 'ability-four-description hidden';
+  $abilityFourDescription.textContent = agent.abilities[3].description;
+  $descriptionSectionColHalf.appendChild($abilityFourDescription);
+
+  // Event listener to show and unshow ability description
+  $abilityOneContainer.addEventListener('mouseenter', () => {
+    $abilityOneDescription.classList.remove('hidden');
+  });
+
+  $abilityOneContainer.addEventListener('mouseleave', () => {
+    $abilityOneDescription.classList.add('hidden');
+  });
+
+  $abilityTwoContainer.addEventListener('mouseenter', () => {
+    $abilityTwoDescription.classList.remove('hidden');
+  });
+
+  $abilityTwoContainer.addEventListener('mouseleave', () => {
+    $abilityTwoDescription.classList.add('hidden');
+  });
+
+  $abilityThreeContainer.addEventListener('mouseenter', () => {
+    $abilityThreeDescription.classList.remove('hidden');
+  });
+
+  $abilityThreeContainer.addEventListener('mouseleave', () => {
+    $abilityThreeDescription.classList.add('hidden');
+  });
+
+  $abilityFourContainer.addEventListener('mouseenter', () => {
+    $abilityFourDescription.classList.remove('hidden');
+  });
+
+  $abilityFourContainer.addEventListener('mouseleave', () => {
+    $abilityFourDescription.classList.add('hidden');
+  });
 
   return $sectionRow;
 }
