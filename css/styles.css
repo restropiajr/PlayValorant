@@ -42,7 +42,7 @@ header {
   width: 100%;
 }
 
-#valorant-logo-navbar:hover {
+.valorant-logo-navbar:hover {
   cursor: pointer;
 }
 
@@ -93,22 +93,16 @@ a:hover {
   margin-bottom: 3rem;
 }
 
-.title-container {
-  width: 100%;
-}
-
 .title-img {
   width: 100%;
 }
 
-.sub-title {
-  margin-top: 0.5rem;
+.video-section {
+  margin-bottom: 2rem;
 }
 
-.video-section {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3rem;
+.video-container {
+  width: 100%;
 }
 
 .video {
@@ -116,14 +110,29 @@ a:hover {
 }
 
 .description-section {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
   border-bottom: 2px solid #111;
+}
+
+h1 {
+  font-family: Montserrat, sans-serif;
+  color: #fd4556;
+  text-align: center;
 }
 
 h2 {
   font-family: Montserrat, sans-serif;
   color: #fd4556;
-  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-family: Montserrat, sans-serif;
+  color: #bd3944;
+}
+
+h4 {
+  margin-top: 0.5rem;
+  text-align: center;
 }
 
 p {
@@ -155,11 +164,11 @@ footer {
 .notice-description > p {
   text-align: center;
   margin-bottom: 0.5rem;
-  line-height: 1.25rem;
 }
 
 .teen-esrb-description > p {
   line-height: 0;
+  margin-bottom: 1rem;
 }
 
 .scroll-up-button {
@@ -188,6 +197,53 @@ footer {
   color: #fffbf5;
 }
 
+.agent-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.agent-img {
+  width: 100%;
+}
+
+.abilities {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ability-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2b2a29;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+  border-radius: 1rem;
+  width: 20%;
+}
+
+.ability-container:hover {
+  background-color: #fd4556;
+}
+
+.ability-img {
+  width: 100%;
+}
+
+.ability-name {
+  color: #fffbf5;
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
 @media screen and (min-width: 768px) {
   .logo-container {
     width: 5%;
@@ -211,6 +267,11 @@ footer {
     margin-bottom: 3rem;
   }
 
+  .video-section {
+    display: flex;
+    justify-content: center;
+  }
+
   .video-container {
     width: 90%;
   }
@@ -219,12 +280,24 @@ footer {
     border-bottom: none;
   }
 
+  h1 {
+    font-size: 3rem;
+  }
+
   h2 {
     font-size: 2rem;
   }
 
+  h3 {
+    font-size: 1.5rem;
+  }
+
   h4 {
     font-size: 1.25rem;
+  }
+
+  .ability-container {
+    width: 20%;
   }
 
   .container {
