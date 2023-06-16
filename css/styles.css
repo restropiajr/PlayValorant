@@ -295,7 +295,8 @@ footer {
   transition: background-color 0.3s ease;
 }
 
-#search-bar:hover {
+#search-bar:hover,
+#search-bar:focus {
   background-color: #fd4556;
 }
 

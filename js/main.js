@@ -602,5 +602,6 @@ function getSkinData() {
 }
 
 // function searchBarReset() {
-//   $searchBar.value = '';
+//   $searchForm.reset();
+
 // }
