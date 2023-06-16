@@ -42,6 +42,9 @@ function scrollUpButtonToggler() {
   }
 }
 
+// Event listener to show scroll up button
+window.addEventListener('scroll', scrollUpButtonToggler);
+
 // Event listener to hide navbar links (mobile view) if open and was not closed before going to desktop view.
 window.addEventListener('resize', () => {
   if (window.innerWidth > 768) {
@@ -50,9 +53,6 @@ window.addEventListener('resize', () => {
     $togglerClose.classList.add('hidden');
   }
 });
-
-// Event listener to show scroll up button
-window.addEventListener('scroll', scrollUpButtonToggler);
 
 // viewSwap function
 function viewSwap(view) {
