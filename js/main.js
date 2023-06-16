@@ -582,7 +582,7 @@ function renderSkin(skin) {
     }
   });
 
-  // Event listener to swap to skin page and reset search form
+  // Event listener to swap to skins page and reset search form
   $skinsLink.forEach(link => {
     link.addEventListener('click', () => {
       $searchForm.reset();
