@@ -1,4 +1,4 @@
-/* global valorantData */
+// /* global valorantData */
 const $togglerButtons = document.querySelector('.toggler-buttons');
 const $togglerOpen = document.querySelector('.toggler-open');
 const $togglerClose = document.querySelector('.toggler-close');
@@ -92,7 +92,6 @@ function viewSwap(view) {
   $togglerOpen.classList.remove('hidden');
   $togglerClose.classList.add('hidden');
   window.scrollTo({ top: 0 });
-  valorantData.view = view;
 }
 
 // Event listener to swap to landing page
@@ -134,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getWeaponData();
   getMapData();
   getSkinData();
-  viewSwap(valorantData.view);
+  viewSwap('landing-page');
 });
 
 // renderAgent function

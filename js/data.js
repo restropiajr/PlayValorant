@@ -1,7 +1,6 @@
 /* exported valorantData */
 
 let valorantData = {
-  view: 'landing-page'
 };
 
 window.addEventListener('beforeunload', () => {
