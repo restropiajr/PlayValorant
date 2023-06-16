@@ -12,6 +12,7 @@ const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
 const $skinsPage = document.querySelector('[data-view="skins-page"]');
 const $mapsPage = document.querySelector('[data-view="maps-page"]');
+const $skinSectionRow = document.querySelector('#skin-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 
@@ -131,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getAgentData();
   getWeaponData();
   getMapData();
+  getSkinData();
   viewSwap(valorantData.view);
 });
 
@@ -444,7 +446,7 @@ function getWeaponData() {
   xhr.send();
 }
 
-// renderWeapon function
+// renderMap function
 function renderMap(map) {
   const $sectionRow = document.createElement('div');
   $sectionRow.className = 'section row';
@@ -541,6 +543,45 @@ function getMapData() {
     xhr.response.data.forEach(map => {
       if (map.displayName !== 'The Range') {
         $mapsPage.appendChild(renderMap(map));
+      }
+    });
+  });
+  xhr.send();
+}
+
+// renderMap function
+function renderSkin(skin) {
+  const $skinSectionColThird = document.createElement('div');
+  $skinSectionColThird.className = 'skin-section column-third';
+  $skinSectionColThird.setAttribute('data-skin', skin.displayName.toLowerCase());
+
+  const $skinContainer = document.createElement('div');
+  $skinContainer.className = 'skin-container';
+  $skinSectionColThird.appendChild($skinContainer);
+
+  const $skinImg = document.createElement('img');
+  $skinImg.className = 'skin-img';
+  $skinImg.setAttribute('src', skin.levels[0].displayIcon);
+  $skinImg.setAttribute('alt', skin.displayName.toLowerCase());
+  $skinContainer.appendChild($skinImg);
+
+  const $skinName = document.createElement('h2');
+  $skinName.className = 'skin-name';
+  $skinName.textContent = skin.displayName.toUpperCase();
+  $skinSectionColThird.appendChild($skinName);
+
+  return $skinSectionColThird;
+}
+
+// getSkinData function
+function getSkinData() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/weapons/skins');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    xhr.response.data.forEach(skin => {
+      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random'))) {
+        $skinSectionRow.appendChild(renderSkin(skin));
       }
     });
   });
