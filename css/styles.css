@@ -330,6 +330,7 @@ footer {
   .video-section {
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
   }
 
   .video-container {
@@ -339,6 +340,11 @@ footer {
   .description-section {
     margin-bottom: 0;
     border-bottom: none;
+  }
+
+  .agent-section,
+  .weapon-section {
+    margin-bottom: 0;
   }
 
   #skin-section-row {
