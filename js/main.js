@@ -15,6 +15,8 @@ const $mapsPage = document.querySelector('[data-view="maps-page"]');
 const $skinSectionRow = document.querySelector('#skin-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
+const $searchForm = document.querySelector('.search-form');
+// const $searchBar = document.querySelector('#search-bar');
 
 // navbarToggler function
 function navbarToggler(event) {
@@ -570,6 +572,17 @@ function renderSkin(skin) {
   $skinName.textContent = skin.displayName.toUpperCase();
   $skinSectionColThird.appendChild($skinName);
 
+  // Search Entry Event Listener
+  $searchForm.addEventListener('input', event => {
+    const searchText = event.target.value.toLowerCase();
+
+    if (skin.displayName.toLowerCase().includes(searchText)) {
+      $skinSectionColThird.classList.remove('hidden');
+    } else {
+      $skinSectionColThird.classList.add('hidden');
+    }
+  });
+
   return $skinSectionColThird;
 }
 
@@ -580,10 +593,14 @@ function getSkinData() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', () => {
     xhr.response.data.forEach(skin => {
-      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random'))) {
+      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase().includes('melee'))) {
         $skinSectionRow.appendChild(renderSkin(skin));
       }
     });
   });
   xhr.send();
 }
+
+// function searchBarReset() {
+//   $searchBar.value = '';
+// }

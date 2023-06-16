@@ -279,6 +279,30 @@ footer {
   padding: 0.5rem;
 }
 
+.search-form {
+  margin: 1rem;
+}
+
+#search-bar {
+  width: 20rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  color: black;
+  font-family: Roboto, sans-serif;
+  padding: 1rem;
+  font-weight: 700;
+  border: 2px solid #111;
+  transition: background-color 0.3s ease;
+}
+
+#search-bar:hover {
+  background-color: #fd4556;
+}
+
+#search-bar::placeholder {
+  color: #111;
+}
+
 @media screen and (min-width: 768px) {
   .logo-container {
     width: 5%;
