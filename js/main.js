@@ -16,7 +16,6 @@ const $skinSectionRow = document.querySelector('#skin-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 const $searchForm = document.querySelector('.search-form');
-// const $searchBar = document.querySelector('#search-bar');
 
 // navbarToggler function
 function navbarToggler(event) {
@@ -122,7 +121,7 @@ $mapsLink.forEach(link => {
   });
 });
 
-// Event listener to swap to maps page
+// Event listener to swap to skins page
 $skinsLink.forEach(link => {
   link.addEventListener('click', () => {
     viewSwap('skins-page');
@@ -583,6 +582,15 @@ function renderSkin(skin) {
     }
   });
 
+  // Event listener to swap to skins page and reset search form
+  $skinsLink.forEach(link => {
+    link.addEventListener('click', () => {
+      $searchForm.reset();
+      $skinSectionColThird.classList.remove('hidden');
+      viewSwap('skins-page');
+    });
+  });
+
   return $skinSectionColThird;
 }
 
@@ -593,15 +601,10 @@ function getSkinData() {
   xhr.responseType = 'json';
   xhr.addEventListener('load', () => {
     xhr.response.data.forEach(skin => {
-      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase().includes('melee'))) {
+      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase() === 'melee')) {
         $skinSectionRow.appendChild(renderSkin(skin));
       }
     });
   });
   xhr.send();
 }
-
-// function searchBarReset() {
-//   $searchForm.reset();
-
-// }
