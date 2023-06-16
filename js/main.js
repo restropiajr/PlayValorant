@@ -6,12 +6,16 @@ const $navbarLinksMobile = document.querySelector('.navbar-links.mobile');
 const $agentsLink = document.querySelectorAll('.agentsLink');
 const $weaponsLink = document.querySelectorAll('.weaponsLink');
 const $mapsLink = document.querySelectorAll('.mapsLink');
+const $skinsLink = document.querySelectorAll('.skinsLink');
 const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
+const $skinsPage = document.querySelector('[data-view="skins-page"]');
 const $mapsPage = document.querySelector('[data-view="maps-page"]');
+const $skinSectionRow = document.querySelector('#skin-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
+const $searchForm = document.querySelector('.search-form');
 
 // navbarToggler function
 function navbarToggler(event) {
@@ -57,21 +61,31 @@ function viewSwap(view) {
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
   } else if (view === 'agents-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.remove('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
   } else if (view === 'weapons-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.remove('hidden');
     $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
   } else if (view === 'maps-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.remove('hidden');
+    $skinsPage.classList.add('hidden');
+  } else if (view === 'skins-page') {
+    $landingPage.classList.add('hidden');
+    $agentsPage.classList.add('hidden');
+    $weaponsPage.classList.add('hidden');
+    $mapsPage.classList.add('hidden');
+    $skinsPage.classList.remove('hidden');
   }
 
   $navbarLinksMobile.classList.add('hidden');
@@ -107,11 +121,19 @@ $mapsLink.forEach(link => {
   });
 });
 
+// Event listener to swap to skins page
+$skinsLink.forEach(link => {
+  link.addEventListener('click', () => {
+    viewSwap('skins-page');
+  });
+});
+
 // Event listener to wait for HTML to parse before DOM manipulation
 document.addEventListener('DOMContentLoaded', () => {
   getAgentData();
   getWeaponData();
   getMapData();
+  getSkinData();
   viewSwap(valorantData.view);
 });
 
@@ -425,7 +447,7 @@ function getWeaponData() {
   xhr.send();
 }
 
-// renderWeapon function
+// renderMap function
 function renderMap(map) {
   const $sectionRow = document.createElement('div');
   $sectionRow.className = 'section row';
@@ -488,10 +510,10 @@ function renderMap(map) {
       mapDescription = 'Bind is a desert-themed map set in Morocco. It is known for its narrow corridors, tight angles, and multiple teleportation opportunities, providing various strategies for players.';
       break;
     case 'Breeze':
-      mapDescription = 'Breeze: Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
+      mapDescription = 'Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
       break;
     case 'Lotus':
-      mapDescription = 'Lotus: Lotus is a newly introduced map in Valorant, set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
+      mapDescription = 'Lotus is a newly introduced map in Valorant, set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
       break;
     case 'Pearl':
       mapDescription = 'Pearl is another newly introduced map in Valorant, set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
@@ -522,6 +544,65 @@ function getMapData() {
     xhr.response.data.forEach(map => {
       if (map.displayName !== 'The Range') {
         $mapsPage.appendChild(renderMap(map));
+      }
+    });
+  });
+  xhr.send();
+}
+
+// renderMap function
+function renderSkin(skin) {
+  const $skinSectionColThird = document.createElement('div');
+  $skinSectionColThird.className = 'skin-section column-third';
+  $skinSectionColThird.setAttribute('data-skin', skin.displayName.toLowerCase());
+
+  const $skinContainer = document.createElement('div');
+  $skinContainer.className = 'skin-container';
+  $skinSectionColThird.appendChild($skinContainer);
+
+  const $skinImg = document.createElement('img');
+  $skinImg.className = 'skin-img';
+  $skinImg.setAttribute('src', skin.levels[0].displayIcon);
+  $skinImg.setAttribute('alt', skin.displayName.toLowerCase());
+  $skinContainer.appendChild($skinImg);
+
+  const $skinName = document.createElement('h2');
+  $skinName.className = 'skin-name';
+  $skinName.textContent = skin.displayName.toUpperCase();
+  $skinSectionColThird.appendChild($skinName);
+
+  // Event listener to search a weapon category or skin
+  $searchForm.addEventListener('input', event => {
+    const searchText = event.target.value.toLowerCase();
+
+    if (skin.displayName.toLowerCase().includes(searchText)) {
+      $skinSectionColThird.classList.remove('hidden');
+    } else {
+      $skinSectionColThird.classList.add('hidden');
+    }
+  });
+
+  // Event listener to swap to skins page and reset search form
+  $skinsLink.forEach(link => {
+    link.addEventListener('click', () => {
+      $searchForm.reset();
+      $skinSectionColThird.classList.remove('hidden');
+      viewSwap('skins-page');
+    });
+  });
+
+  return $skinSectionColThird;
+}
+
+// getSkinData function
+function getSkinData() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/weapons/skins');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', () => {
+    xhr.response.data.forEach(skin => {
+      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase() === 'melee')) {
+        $skinSectionRow.appendChild(renderSkin(skin));
       }
     });
   });

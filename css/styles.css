@@ -205,7 +205,8 @@ footer {
 
 .agent-section,
 .weapon-section,
-.map-section {
+.map-section,
+.skin-section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,16 +214,27 @@ footer {
   padding: 1rem;
 }
 
+.skin-section {
+  border-bottom: 2px solid #111;
+  margin-bottom: 3rem;
+}
+
 .agent-img,
 .ability-img,
 .weapon-img,
 .map-splash-img,
-.map-layout-img {
+.map-layout-img,
+.skin-img {
   width: 100%;
 }
 
-.weapon-section > h2 {
+.weapon-section > h2,
+.skin-section > h2 {
   margin-top: 1rem;
+}
+
+.skin-section > h2 {
+  text-align: center;
 }
 
 .abilities {
@@ -262,6 +274,36 @@ footer {
   align-items: center;
 }
 
+.map-splash-container,
+.map-layout-container {
+  padding: 0.5rem;
+}
+
+.search-form {
+  margin: 1rem;
+}
+
+#search-bar {
+  width: 15rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  color: black;
+  font-family: Roboto, sans-serif;
+  padding: 1rem;
+  font-weight: 700;
+  border: 2px solid #111;
+  transition: background-color 0.3s ease;
+}
+
+#search-bar:hover,
+#search-bar:focus {
+  background-color: #fd4556;
+}
+
+#search-bar::placeholder {
+  color: #111;
+}
+
 @media screen and (min-width: 768px) {
   .logo-container {
     width: 5%;
@@ -288,6 +330,7 @@ footer {
   .video-section {
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
   }
 
   .video-container {
@@ -297,6 +340,20 @@ footer {
   .description-section {
     margin-bottom: 0;
     border-bottom: none;
+  }
+
+  .agent-section,
+  .weapon-section {
+    margin-bottom: 0;
+  }
+
+  #skin-section-row {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .skin-section {
+    border-bottom: 2px solid #111;
   }
 
   h1 {
@@ -317,6 +374,10 @@ footer {
 
   .weapon-title {
     margin-bottom: 3rem;
+  }
+
+  .skin-name {
+    font-size: 1.5rem;
   }
 
   .container {
