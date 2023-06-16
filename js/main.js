@@ -571,7 +571,7 @@ function renderSkin(skin) {
   $skinName.textContent = skin.displayName.toUpperCase();
   $skinSectionColThird.appendChild($skinName);
 
-  // Search Entry Event Listener
+  // Event listener to search a weapon category or skin
   $searchForm.addEventListener('input', event => {
     const searchText = event.target.value.toLowerCase();
 
