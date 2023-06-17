@@ -549,7 +549,7 @@ function getMapData() {
   xhr.send();
 }
 
-// renderMap function
+// renderSkin function
 function renderSkin(skin) {
   const $skinSectionColThird = document.createElement('div');
   $skinSectionColThird.className = 'skin-section column-third';

@@ -47,7 +47,7 @@ header {
   transition: background-color 0.3s ease;
 }
 
-.valorant-logo-navbar:hover {
+.valorant-logo-navbar:active {
   cursor: pointer;
   background-color: #2b2a29;
 }
@@ -60,7 +60,7 @@ header {
   transition: background-color 0.3s ease;
 }
 
-.toggler-buttons:hover {
+.toggler-buttons:active {
   cursor: pointer;
   background-color: #fd4556;
 }
@@ -86,7 +86,7 @@ a {
   transition: background-color 0.3s ease;
 }
 
-a:hover {
+a:active {
   cursor: pointer;
   background-color: #fd4556;
 }
@@ -295,7 +295,6 @@ footer {
   transition: background-color 0.3s ease;
 }
 
-#search-bar:hover,
 #search-bar:focus {
   background-color: #fd4556;
 }
@@ -316,6 +315,25 @@ footer {
   .navbar-links.mobile,
   .toggler-buttons {
     display: none;
+  }
+
+  a:hover {
+    cursor: pointer;
+    background-color: #fd4556;
+  }
+
+  .toggler-buttons:hover {
+    cursor: pointer;
+    background-color: #fd4556;
+  }
+
+  .valorant-logo-navbar:hover {
+    cursor: pointer;
+    background-color: #2b2a29;
+  }
+
+  #search-bar:hover {
+    background-color: #fd4556;
   }
 
   .title-container {
