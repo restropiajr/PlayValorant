@@ -1,3 +1,3 @@
-# ajax-project
+# PlayValorant
 
-A dynamic HTML, CSS, and JavaScript solo project.
+Valorant Game Information Website
