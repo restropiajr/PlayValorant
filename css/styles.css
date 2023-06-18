@@ -47,8 +47,11 @@ header {
   transition: background-color 0.3s ease;
 }
 
-.valorant-logo-navbar:active {
+.valorant-logo-navbar:hover {
   cursor: pointer;
+}
+
+.valorant-logo-navbar:active {
   background-color: #2b2a29;
 }
 
@@ -60,8 +63,11 @@ header {
   transition: background-color 0.3s ease;
 }
 
-.toggler-buttons:active {
+.toggler-buttons:hover {
   cursor: pointer;
+}
+
+.toggler-buttons:active {
   background-color: #fd4556;
 }
 
@@ -87,7 +93,6 @@ a {
 }
 
 a:active {
-  cursor: pointer;
   background-color: #fd4556;
 }
 
@@ -319,11 +324,6 @@ footer {
   }
 
   a:hover {
-    cursor: pointer;
-    background-color: #fd4556;
-  }
-
-  .toggler-buttons:hover {
     cursor: pointer;
     background-color: #fd4556;
   }
