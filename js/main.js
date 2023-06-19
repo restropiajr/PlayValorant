@@ -569,7 +569,7 @@ function renderSkin(skin) {
   return $skinSectionColThird;
 }
 
-// querySkins
+// querySkins function
 function querySkins() {
   $allSkins = document.querySelectorAll('[data-skin]');
 }
