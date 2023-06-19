@@ -16,6 +16,7 @@ const $skinSectionRow = document.querySelector('#skin-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 const $searchForm = document.querySelector('.search-form');
+let $allSkins;
 
 // navbarToggler function
 function navbarToggler(event) {
@@ -123,17 +124,12 @@ $mapsLink.forEach(link => {
 // Event listener to swap to skins page
 $skinsLink.forEach(link => {
   link.addEventListener('click', () => {
+    $searchForm.reset();
+    $allSkins.forEach(skin => {
+      skin.classList.remove('hidden');
+    });
     viewSwap('skins-page');
   });
-});
-
-// Event listener to wait for HTML to parse before DOM manipulation
-document.addEventListener('DOMContentLoaded', () => {
-  getAgentData();
-  getWeaponData();
-  getMapData();
-  getSkinData();
-  viewSwap('landing-page');
 });
 
 // renderAgent function
@@ -570,27 +566,12 @@ function renderSkin(skin) {
   $skinName.textContent = skin.displayName.toUpperCase();
   $skinSectionColThird.appendChild($skinName);
 
-  // Event listener to search a weapon category or skin
-  $searchForm.addEventListener('input', event => {
-    const searchText = event.target.value.toLowerCase();
-
-    if (skin.displayName.toLowerCase().includes(searchText)) {
-      $skinSectionColThird.classList.remove('hidden');
-    } else {
-      $skinSectionColThird.classList.add('hidden');
-    }
-  });
-
-  // Event listener to swap to skins page and reset search form
-  $skinsLink.forEach(link => {
-    link.addEventListener('click', () => {
-      $searchForm.reset();
-      $skinSectionColThird.classList.remove('hidden');
-      viewSwap('skins-page');
-    });
-  });
-
   return $skinSectionColThird;
+}
+
+// querySkins function
+function querySkins() {
+  $allSkins = document.querySelectorAll('[data-skin]');
 }
 
 // getSkinData function
@@ -604,6 +585,31 @@ function getSkinData() {
         $skinSectionRow.appendChild(renderSkin(skin));
       }
     });
+    querySkins();
   });
   xhr.send();
 }
+
+// Event listener to search a weapon category or skin
+$searchForm.addEventListener('input', event => {
+  const searchText = event.target.value.toLowerCase();
+
+  $allSkins.forEach(skin => {
+    const skinName = skin.getAttribute('data-skin');
+    if (skinName.toLowerCase().includes(searchText)) {
+      skin.classList.remove('hidden');
+    } else {
+      skin.classList.add('hidden');
+    }
+  });
+
+});
+
+// Event listener to wait for HTML to parse before DOM manipulation
+document.addEventListener('DOMContentLoaded', () => {
+  getAgentData();
+  getWeaponData();
+  getMapData();
+  getSkinData();
+  viewSwap('landing-page');
+});
