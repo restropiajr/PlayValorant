@@ -1,4 +1,4 @@
-// /* global valorantData */
+/* global valorantData */
 const $togglerButtons = document.querySelector('.toggler-buttons');
 const $togglerOpen = document.querySelector('.toggler-open');
 const $togglerClose = document.querySelector('.toggler-close');
@@ -7,12 +7,15 @@ const $agentsLink = document.querySelectorAll('.agentsLink');
 const $weaponsLink = document.querySelectorAll('.weaponsLink');
 const $mapsLink = document.querySelectorAll('.mapsLink');
 const $skinsLink = document.querySelectorAll('.skinsLink');
+const $favoritesLink = document.querySelectorAll('.favoritesLink');
 const $landingPage = document.querySelector('[data-view="landing-page"]');
 const $agentsPage = document.querySelector('[data-view="agents-page"]');
 const $weaponsPage = document.querySelector('[data-view="weapons-page"]');
 const $skinsPage = document.querySelector('[data-view="skins-page"]');
 const $mapsPage = document.querySelector('[data-view="maps-page"]');
+const $favoritesPage = document.querySelector('[data-view="favorites-page"]');
 const $skinSectionRow = document.querySelector('#skin-section-row');
+const $favoriteSectionRow = document.querySelector('#favorite-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 const $searchForm = document.querySelector('.search-form');
@@ -63,30 +66,42 @@ function viewSwap(view) {
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
     $skinsPage.classList.add('hidden');
+    $favoritesPage.classList.add('hidden');
   } else if (view === 'agents-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.remove('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
     $skinsPage.classList.add('hidden');
+    $favoritesPage.classList.add('hidden');
   } else if (view === 'weapons-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.remove('hidden');
     $mapsPage.classList.add('hidden');
     $skinsPage.classList.add('hidden');
+    $favoritesPage.classList.add('hidden');
   } else if (view === 'maps-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.remove('hidden');
     $skinsPage.classList.add('hidden');
+    $favoritesPage.classList.add('hidden');
   } else if (view === 'skins-page') {
     $landingPage.classList.add('hidden');
     $agentsPage.classList.add('hidden');
     $weaponsPage.classList.add('hidden');
     $mapsPage.classList.add('hidden');
     $skinsPage.classList.remove('hidden');
+    $favoritesPage.classList.add('hidden');
+  } else if (view === 'favorites-page') {
+    $landingPage.classList.add('hidden');
+    $agentsPage.classList.add('hidden');
+    $weaponsPage.classList.add('hidden');
+    $mapsPage.classList.add('hidden');
+    $skinsPage.classList.add('hidden');
+    $favoritesPage.classList.remove('hidden');
   }
 
   $navbarLinksMobile.classList.add('hidden');
@@ -129,6 +144,13 @@ $skinsLink.forEach(link => {
       skin.classList.remove('hidden');
     });
     viewSwap('skins-page');
+  });
+});
+
+// Event listener to swap to favorites page
+$favoritesLink.forEach(link => {
+  link.addEventListener('click', () => {
+    viewSwap('favorites-page');
   });
 });
 
@@ -508,10 +530,10 @@ function renderMap(map) {
       mapDescription = 'Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
       break;
     case 'Lotus':
-      mapDescription = 'Lotus is a newly introduced map in Valorant, set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
+      mapDescription = 'Lotus is set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
       break;
     case 'Pearl':
-      mapDescription = 'Pearl is another newly introduced map in Valorant, set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
+      mapDescription = 'Pearl is set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
       break;
     case 'Icebox':
       mapDescription = 'Icebox is a frosty, Arctic-themed map set in a remote location. It features multiple ziplines, verticality, and a mix of open areas and narrow hallways.';
@@ -551,6 +573,18 @@ function renderSkin(skin) {
   $skinSectionColThird.className = 'skin-section column-third';
   $skinSectionColThird.setAttribute('data-skin', skin.displayName.toLowerCase());
 
+  const $favoritesTogglerMenu = document.createElement('div');
+  $favoritesTogglerMenu.className = 'favorites-toggler-buttons';
+  $skinSectionColThird.appendChild($favoritesTogglerMenu);
+
+  const $favoritesOff = document.createElement('i');
+  $favoritesOff.className = 'favorites-off fa-regular fa-heart fa-xl';
+  $favoritesTogglerMenu.appendChild($favoritesOff);
+
+  const $favoritesOn = document.createElement('i');
+  $favoritesOn.className = 'favorites-on fa-solid fa-heart fa-xl hidden';
+  $favoritesTogglerMenu.appendChild($favoritesOn);
+
   const $skinContainer = document.createElement('div');
   $skinContainer.className = 'skin-container';
   $skinSectionColThird.appendChild($skinContainer);
@@ -569,9 +603,28 @@ function renderSkin(skin) {
   return $skinSectionColThird;
 }
 
-// querySkins function
-function querySkins() {
-  $allSkins = document.querySelectorAll('[data-skin]');
+// renderFavoriteSkin function
+function renderFavoriteSkin(skin) {
+  const $skinSectionColThird = document.createElement('div');
+  $skinSectionColThird.className = 'skin-section column-third';
+  $skinSectionColThird.setAttribute('data-skin', skin.displayName.toLowerCase());
+
+  const $skinContainer = document.createElement('div');
+  $skinContainer.className = 'skin-container';
+  $skinSectionColThird.appendChild($skinContainer);
+
+  const $skinImg = document.createElement('img');
+  $skinImg.className = 'skin-img';
+  $skinImg.setAttribute('src', skin.levels[0].displayIcon);
+  $skinImg.setAttribute('alt', skin.displayName.toLowerCase());
+  $skinContainer.appendChild($skinImg);
+
+  const $skinName = document.createElement('h2');
+  $skinName.className = 'skin-name';
+  $skinName.textContent = skin.displayName.toUpperCase();
+  $skinSectionColThird.appendChild($skinName);
+
+  return $skinSectionColThird;
 }
 
 // getSkinData function
@@ -580,20 +633,84 @@ function getSkinData() {
   xhr.open('GET', 'https://valorant-api.com/v1/weapons/skins');
   xhr.responseType = 'json';
   xhr.addEventListener('load', () => {
-    xhr.response.data.forEach(skin => {
-      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase() === 'melee')) {
-        $skinSectionRow.appendChild(renderSkin(skin));
+    xhr.response.data.forEach(skinData => {
+      if (!(skinData.displayName.toLowerCase().includes('standard') || skinData.displayName.toLowerCase().includes('random') || skinData.displayName.toLowerCase() === 'melee')) {
+        $skinSectionRow.appendChild(renderSkin(skinData));
+        if (!valorantData.skins.some(existingSkinData => existingSkinData.uuid === skinData.uuid)) {
+          valorantData.skins.push(skinData);
+        }
       }
     });
-    querySkins();
+    $allSkins = document.querySelectorAll('[data-skin]');
+    renderFavoritesPage();
+    updateFavoritesTogglerStatus();
   });
   xhr.send();
+}
+
+// Event listener to favorite a skin (skin page)
+$skinSectionRow.addEventListener('click', event => {
+  $allSkins.forEach(skinDiv => {
+    const $favoritesTogglerOff = skinDiv.firstChild.childNodes[0];
+    const $favoritesTogglerOn = skinDiv.firstChild.childNodes[1];
+    const skinName = skinDiv.getAttribute('data-skin');
+    const matchedSkinData = valorantData.skins.find(existingSkinData => existingSkinData.displayName.toLowerCase() === skinName.toLowerCase());
+    if (event.target === $favoritesTogglerOff) {
+      $favoritesTogglerOff.classList.add('hidden');
+      $favoritesTogglerOn.classList.remove('hidden');
+      if (!valorantData.favorites.some(existingFavoriteSkinData => existingFavoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
+        valorantData.favorites.push(matchedSkinData);
+      }
+    } else if (event.target === $favoritesTogglerOn) {
+      $favoritesTogglerOff.classList.remove('hidden');
+      $favoritesTogglerOn.classList.add('hidden');
+      const favoriteSkinDataIndex = valorantData.favorites.findIndex(existingFavoriteSkinData => existingFavoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase());
+      if (favoriteSkinDataIndex !== -1) {
+        valorantData.favorites.splice(favoriteSkinDataIndex, 1);
+      }
+    }
+    renderFavoritesPage();
+  });
+});
+
+function renderFavoritesPage() {
+  $favoriteSectionRow.textContent = '';
+  if (valorantData.favorites.length === 0) {
+    const $fillerDiv = document.createElement('div');
+    $fillerDiv.classList.add('filler');
+
+    const $noFavoriteSkinsMessage = document.createElement('p');
+    $noFavoriteSkinsMessage.className = 'no-favorite-skins-message';
+    $noFavoriteSkinsMessage.textContent = 'No favorite skins found.';
+    $fillerDiv.appendChild($noFavoriteSkinsMessage);
+
+    $favoriteSectionRow.appendChild($fillerDiv);
+  } else {
+    valorantData.favorites.forEach(favoriteSkinData => {
+      $favoriteSectionRow.appendChild(renderFavoriteSkin(favoriteSkinData));
+    });
+  }
+}
+
+// updateFavoritesTogglerStatus function
+function updateFavoritesTogglerStatus() {
+  $allSkins.forEach(skinDiv => {
+    const $favoritesTogglerOff = skinDiv.firstChild.childNodes[0];
+    const $favoritesTogglerOn = skinDiv.firstChild.childNodes[1];
+    const skinName = skinDiv.getAttribute('data-skin');
+    if (valorantData.favorites.some(existingFavoriteSkinData => existingFavoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
+      $favoritesTogglerOff.classList.add('hidden');
+      $favoritesTogglerOn.classList.remove('hidden');
+    } else {
+      $favoritesTogglerOff.classList.remove('hidden');
+      $favoritesTogglerOn.classList.add('hidden');
+    }
+  });
 }
 
 // Event listener to search a weapon category or skin
 $searchForm.addEventListener('input', event => {
   const searchText = event.target.value.toLowerCase();
-
   $allSkins.forEach(skin => {
     const skinName = skin.getAttribute('data-skin');
     if (skinName.toLowerCase().includes(searchText)) {
@@ -602,7 +719,6 @@ $searchForm.addEventListener('input', event => {
       skin.classList.add('hidden');
     }
   });
-
 });
 
 // Event listener to wait for HTML to parse before DOM manipulation
