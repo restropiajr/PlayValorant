@@ -270,7 +270,7 @@ footer {
 
 .ability-name {
   color: #fffbf5;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   text-align: center;
   line-height: 1rem;
@@ -441,6 +441,10 @@ footer {
 
   .skin-name {
     font-size: 1.5rem;
+  }
+
+  .ability-name {
+    font-size: 0.75rem;
   }
 
   .container {
