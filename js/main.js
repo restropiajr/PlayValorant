@@ -633,11 +633,11 @@ function getSkinData() {
   xhr.open('GET', 'https://valorant-api.com/v1/weapons/skins');
   xhr.responseType = 'json';
   xhr.addEventListener('load', () => {
-    xhr.response.data.forEach(skin => {
-      if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase() === 'melee')) {
-        $skinSectionRow.appendChild(renderSkin(skin));
-        if (!valorantData.skins.some(existingSkin => existingSkin.uuid === skin.uuid)) {
-          valorantData.skins.push(skin);
+    xhr.response.data.forEach(skinData => {
+      if (!(skinData.displayName.toLowerCase().includes('standard') || skinData.displayName.toLowerCase().includes('random') || skinData.displayName.toLowerCase() === 'melee')) {
+        $skinSectionRow.appendChild(renderSkin(skinData));
+        if (!valorantData.skins.some(existingSkinData => existingSkinData.uuid === skinData.uuid)) {
+          valorantData.skins.push(skinData);
         }
       }
     });
@@ -654,17 +654,17 @@ $skinSectionRow.addEventListener('click', event => {
     const $favoritesTogglerOff = skinDiv.firstChild.childNodes[0];
     const $favoritesTogglerOn = skinDiv.firstChild.childNodes[1];
     const skinName = skinDiv.getAttribute('data-skin');
-    const matchedSkinData = valorantData.skins.find(skinData => skinData.displayName.toLowerCase() === skinName.toLowerCase());
+    const matchedSkinData = valorantData.skins.find(existingSkinData => existingSkinData.displayName.toLowerCase() === skinName.toLowerCase());
     if (event.target === $favoritesTogglerOff) {
       $favoritesTogglerOff.classList.add('hidden');
       $favoritesTogglerOn.classList.remove('hidden');
-      if (!valorantData.favorites.some(favoriteSkinData => favoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
+      if (!valorantData.favorites.some(existingFavoriteSkinData => existingFavoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
         valorantData.favorites.push(matchedSkinData);
       }
     } else if (event.target === $favoritesTogglerOn) {
       $favoritesTogglerOff.classList.remove('hidden');
       $favoritesTogglerOn.classList.add('hidden');
-      const favoriteSkinDataIndex = valorantData.favorites.findIndex(favoriteSkinData => favoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase());
+      const favoriteSkinDataIndex = valorantData.favorites.findIndex(existingFavoriteSkinData => existingFavoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase());
       if (favoriteSkinDataIndex !== -1) {
         valorantData.favorites.splice(favoriteSkinDataIndex, 1);
       }
@@ -675,10 +675,21 @@ $skinSectionRow.addEventListener('click', event => {
 
 function renderFavoritesPage() {
   $favoriteSectionRow.textContent = '';
-  valorantData.favorites.forEach(favoriteSkinData => {
-    const favoriteSkinDiv = renderFavoriteSkin(favoriteSkinData);
-    $favoriteSectionRow.appendChild(favoriteSkinDiv);
-  });
+  if (valorantData.favorites.length === 0) {
+    const $fillerDiv = document.createElement('div');
+    $fillerDiv.classList.add('filler');
+
+    const $noFavoritesMessage = document.createElement('p');
+    $noFavoritesMessage.className = 'no-favorites-message';
+    $noFavoritesMessage.textContent = 'No favorite skins found.';
+    $fillerDiv.appendChild($noFavoritesMessage);
+
+    $favoriteSectionRow.appendChild($fillerDiv);
+  } else {
+    valorantData.favorites.forEach(favoriteSkinData => {
+      $favoriteSectionRow.appendChild(renderFavoriteSkin(favoriteSkinData));
+    });
+  }
 }
 
 // updateFavoritesTogglerStatus function
@@ -687,7 +698,7 @@ function updateFavoritesTogglerStatus() {
     const $favoritesTogglerOff = skinDiv.firstChild.childNodes[0];
     const $favoritesTogglerOn = skinDiv.firstChild.childNodes[1];
     const skinName = skinDiv.getAttribute('data-skin');
-    if (valorantData.favorites.some(favoriteSkinData => favoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
+    if (valorantData.favorites.some(existingFavoriteSkinData => existingFavoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
       $favoritesTogglerOff.classList.add('hidden');
       $favoritesTogglerOn.classList.remove('hidden');
     } else {
