@@ -344,10 +344,11 @@ footer {
 }
 
 .filler {
+  width: 100%;
   height: 100vh;
 }
 
-.no-favorites-message {
+.no-favorite-skins-message {
   text-align: center;
 }
 

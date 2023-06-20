@@ -530,10 +530,10 @@ function renderMap(map) {
       mapDescription = 'Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
       break;
     case 'Lotus':
-      mapDescription = 'Lotus is a newly introduced map in Valorant, set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
+      mapDescription = 'Lotus is set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
       break;
     case 'Pearl':
-      mapDescription = 'Pearl is another newly introduced map in Valorant, set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
+      mapDescription = 'Pearl is set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
       break;
     case 'Icebox':
       mapDescription = 'Icebox is a frosty, Arctic-themed map set in a remote location. It features multiple ziplines, verticality, and a mix of open areas and narrow hallways.';
@@ -679,10 +679,10 @@ function renderFavoritesPage() {
     const $fillerDiv = document.createElement('div');
     $fillerDiv.classList.add('filler');
 
-    const $noFavoritesMessage = document.createElement('p');
-    $noFavoritesMessage.className = 'no-favorites-message';
-    $noFavoritesMessage.textContent = 'No favorite skins found.';
-    $fillerDiv.appendChild($noFavoritesMessage);
+    const $noFavoriteSkinsMessage = document.createElement('p');
+    $noFavoriteSkinsMessage.className = 'no-favorite-skins-message';
+    $noFavoriteSkinsMessage.textContent = 'No favorite skins found.';
+    $fillerDiv.appendChild($noFavoriteSkinsMessage);
 
     $favoriteSectionRow.appendChild($fillerDiv);
   } else {
