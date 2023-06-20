@@ -398,7 +398,8 @@ footer {
     margin-bottom: 0;
   }
 
-  #skin-section-row {
+  #skin-section-row,
+  #favorite-section-row {
     border-bottom: none;
     margin-bottom: 0;
   }

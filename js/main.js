@@ -15,6 +15,7 @@ const $skinsPage = document.querySelector('[data-view="skins-page"]');
 const $mapsPage = document.querySelector('[data-view="maps-page"]');
 const $favoritesPage = document.querySelector('[data-view="favorites-page"]');
 const $skinSectionRow = document.querySelector('#skin-section-row');
+const $favoriteSectionRow = document.querySelector('#favorite-section-row');
 const $valorantLogoNavbar = document.querySelector('.valorant-logo-navbar');
 const $scrollUpButton = document.querySelector('.scroll-up-button');
 const $searchForm = document.querySelector('.search-form');
@@ -602,6 +603,30 @@ function renderSkin(skin) {
   return $skinSectionColThird;
 }
 
+// renderFavoriteSkin function
+function renderFavoriteSkin(skin) {
+  const $skinSectionColThird = document.createElement('div');
+  $skinSectionColThird.className = 'skin-section column-third';
+  $skinSectionColThird.setAttribute('data-skin', skin.displayName.toLowerCase());
+
+  const $skinContainer = document.createElement('div');
+  $skinContainer.className = 'skin-container';
+  $skinSectionColThird.appendChild($skinContainer);
+
+  const $skinImg = document.createElement('img');
+  $skinImg.className = 'skin-img';
+  $skinImg.setAttribute('src', skin.levels[0].displayIcon);
+  $skinImg.setAttribute('alt', skin.displayName.toLowerCase());
+  $skinContainer.appendChild($skinImg);
+
+  const $skinName = document.createElement('h2');
+  $skinName.className = 'skin-name';
+  $skinName.textContent = skin.displayName.toUpperCase();
+  $skinSectionColThird.appendChild($skinName);
+
+  return $skinSectionColThird;
+}
+
 // getSkinData function
 function getSkinData() {
   const xhr = new XMLHttpRequest();
@@ -611,14 +636,65 @@ function getSkinData() {
     xhr.response.data.forEach(skin => {
       if (!(skin.displayName.toLowerCase().includes('standard') || skin.displayName.toLowerCase().includes('random') || skin.displayName.toLowerCase() === 'melee')) {
         $skinSectionRow.appendChild(renderSkin(skin));
-        if (!valorantData.skins.includes(skin)) {
+        if (!valorantData.skins.some(existingSkin => existingSkin.uuid === skin.uuid)) {
           valorantData.skins.push(skin);
         }
       }
     });
     $allSkins = document.querySelectorAll('[data-skin]');
+    renderFavoritesPage();
+    updateFavoritesTogglerStatus();
   });
   xhr.send();
+}
+
+// Event listener to favorite a skin (skin page)
+$skinSectionRow.addEventListener('click', event => {
+  $allSkins.forEach(skinDiv => {
+    const $favoritesTogglerOff = skinDiv.firstChild.childNodes[0];
+    const $favoritesTogglerOn = skinDiv.firstChild.childNodes[1];
+    const skinName = skinDiv.getAttribute('data-skin');
+    const matchedSkinData = valorantData.skins.find(skinData => skinData.displayName.toLowerCase() === skinName.toLowerCase());
+    if (event.target === $favoritesTogglerOff) {
+      $favoritesTogglerOff.classList.add('hidden');
+      $favoritesTogglerOn.classList.remove('hidden');
+      if (!valorantData.favorites.some(favoriteSkinData => favoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
+        valorantData.favorites.push(matchedSkinData);
+      }
+    } else if (event.target === $favoritesTogglerOn) {
+      $favoritesTogglerOff.classList.remove('hidden');
+      $favoritesTogglerOn.classList.add('hidden');
+      const favoriteSkinDataIndex = valorantData.favorites.findIndex(favoriteSkinData => favoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase());
+      if (favoriteSkinDataIndex !== -1) {
+        valorantData.favorites.splice(favoriteSkinDataIndex, 1);
+      }
+    }
+    renderFavoritesPage();
+  });
+});
+
+function renderFavoritesPage() {
+  $favoriteSectionRow.textContent = '';
+  valorantData.favorites.forEach(favoriteSkinData => {
+    const favoriteSkinDiv = renderFavoriteSkin(favoriteSkinData);
+    $favoriteSectionRow.appendChild(favoriteSkinDiv);
+  });
+}
+
+// updateFavoritesTogglerStatus function
+function updateFavoritesTogglerStatus() {
+  $allSkins.forEach(skinDiv => {
+    const $favoritesTogglerOff = skinDiv.firstChild.childNodes[0];
+    const $favoritesTogglerOn = skinDiv.firstChild.childNodes[1];
+    const skinName = skinDiv.getAttribute('data-skin');
+    if (valorantData.favorites.some(favoriteSkinData => favoriteSkinData.displayName.toLowerCase() === skinName.toLowerCase())) {
+      $favoritesTogglerOff.classList.add('hidden');
+      $favoritesTogglerOn.classList.remove('hidden');
+    } else {
+      $favoritesTogglerOff.classList.remove('hidden');
+      $favoritesTogglerOn.classList.add('hidden');
+    }
+  });
 }
 
 // Event listener to search a weapon category or skin
@@ -630,21 +706,6 @@ $searchForm.addEventListener('input', event => {
       skin.classList.remove('hidden');
     } else {
       skin.classList.add('hidden');
-    }
-  });
-});
-
-// Event listener to favorite a skin
-$skinSectionRow.addEventListener('click', event => {
-  $allSkins.forEach(skin => {
-    const $favoritesTogglerOff = skin.firstChild.childNodes[0];
-    const $favoritesTogglerOn = skin.firstChild.childNodes[1];
-    if (event.target === $favoritesTogglerOff) {
-      $favoritesTogglerOff.classList.add('hidden');
-      $favoritesTogglerOn.classList.remove('hidden');
-    } else if (event.target === $favoritesTogglerOn) {
-      $favoritesTogglerOff.classList.remove('hidden');
-      $favoritesTogglerOn.classList.add('hidden');
     }
   });
 });
