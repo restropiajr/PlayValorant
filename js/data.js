@@ -1,6 +1,7 @@
 /* exported valorantData */
 
 let valorantData = {
+  skins: []
 };
 
 window.addEventListener('beforeunload', () => {

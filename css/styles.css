@@ -220,6 +220,7 @@ footer {
 }
 
 .skin-section {
+  position: relative;
   border-bottom: 2px solid #111;
   margin-bottom: 3rem;
 }
@@ -307,6 +308,37 @@ footer {
 #search-bar::placeholder {
   color: #111;
   text-align: center;
+}
+
+.favorites-toggler-buttons {
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.favorites-toggler-buttons :hover {
+  cursor: pointer;
+}
+
+.favorites-off {
+  color: #2b2a29;
+  transition: color 0.3s ease;
+}
+
+.favorites-off:hover {
+  color: #fd4556;
+}
+
+.favorites-on {
+  color: #fd4556;
+  transition: color 0.3s ease;
+}
+
+.favorites-on:hover {
+  color: #2b2a29;
 }
 
 @media screen and (min-width: 768px) {
