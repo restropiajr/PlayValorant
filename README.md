@@ -1,3 +1,3 @@
 # PlayValorant
 
-A dynamic website that let users view game information for Valorant by Riot Games.
+A dynamic website that allow users to view game information for Valorant by Riot Games.
