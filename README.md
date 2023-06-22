@@ -12,9 +12,9 @@
 
 ## Why I Built This
 
-I wanted to build a mock Valorant website because it's a perfect chance for me to combine my passion for gaming with my web development skills. I get to create interactive UI elements, implement responsive design, and integrate APIs, all while working with game-related data of Valorant.
+I wanted to build a mock Valorant website because it's a perfect chance for me to combine my passion for gaming with my web development skills. I get to create interactive UI elements, implement responsive design, and integrate APIs, all while working with Valorant game-related data.
 
-## Technologies
+## Technologies Used
 
 - JavaScript
 - HTML
