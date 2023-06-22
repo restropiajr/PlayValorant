@@ -35,3 +35,12 @@ Valorant was the first FPS game that I found myself consistently playing solo or
 ## Link Demo
 
 Try the website at restropiajr.github.io/PlayValorant/
+
+## Preview
+
+https://github.com/restropiajr/PlayValorant/assets/66459527/2a6e92dc-fdd6-42af-bf28-938dc40f5b28
+
+
+
+
+
