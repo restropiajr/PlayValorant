@@ -1,10 +1,14 @@
+## PlayValorant
+
 <p align="center">
   <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/ce53fc3e-8adc-4dec-ad07-6568b26a0144" width=50% height=50%>
 </p>
 
-# PlayValorant
-
-A dynamic website that allow users to view game information for Valorant by Riot Games.
+<div align="center">
+  
+ **A dynamic website that allows users to view game information for Valorant by Riot Games.**
+ 
+</div>
 
 ## Why I Built This
 
@@ -39,7 +43,7 @@ Try the website at restropiajr.github.io/PlayValorant/
 ## Preview
 
 <p align="center">
-  <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/b7c2dd88-7463-4182-8b7a-7df6868e2824" width=75% height=75%>
+  <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/b7c2dd88-7463-4182-8b7a-7df6868e2824">
 </p>
 
 <p align="center">
@@ -52,7 +56,5 @@ Try the website at restropiajr.github.io/PlayValorant/
 
 ## Development
 
-- Clone the repository.
-- Open index.html with LiveReload Server.
-
-
+1. Clone the repository.
+2. Open index.html with LiveReload Server
