@@ -10,6 +10,7 @@ A dynamic website that allow users to view game information for Valorant by Riot
 - HTML
 - CSS
 - AJAX
+- [Public Valorant API](https://valorant-api.com/)
 
 ## Features
 
