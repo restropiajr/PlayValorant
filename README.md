@@ -12,7 +12,7 @@
 
 ## Why I Built This
 
-Valorant was the first FPS game that I found myself consistently playing solo or with friends. It taught me that practice is key and I hope to do implement the same principles with my web development journey.
+Valorant was the first "FPS" game that I found myself consistently playing solo or with friends. It taught me that practice is key and I hope to do implement the same principles with my web development journey.
 
 ## Technologies
 
