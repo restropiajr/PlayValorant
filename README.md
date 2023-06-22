@@ -12,7 +12,7 @@
 
 ## Why I Built This
 
-Valorant was the first "FPS" game that I found myself playing hours either by myself or with friends. To get better at the game, consistent practice was needed in which I strive to do the same for my web development skills.
+I wanted to build a mock Valorant website because it's a perfect chance for me to combine my passion for gaming with my web development skills. I get to create interactive UI elements, implement responsive design, and integrate APIs, all while working with game-related data of Valorant.
 
 ## Technologies
 
