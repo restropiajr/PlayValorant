@@ -38,9 +38,21 @@ Try the website at restropiajr.github.io/PlayValorant/
 
 ## Preview
 
-https://github.com/restropiajr/PlayValorant/assets/66459527/2a6e92dc-fdd6-42af-bf28-938dc40f5b28
+<p align="center">
+  <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/b7c2dd88-7463-4182-8b7a-7df6868e2824" width=75% height=75%>
+</p>
 
+<p align="center">
+  <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/04e7e7b9-b495-401c-83d8-b824851edc76")>
+</p>
 
+<p align="center">
+  <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/12c94287-19b6-4dbc-9dd8-0f26c218e7f9")>
+</p>
 
+## Development
+
+- Clone the repository.
+- Open index.html with LiveReload Server.
 
 
