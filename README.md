@@ -28,12 +28,13 @@ Valorant was the first "FPS" game that I found myself playing hours either by my
 - User can click to view the details of agents.
 - User can click to view the details of weapons.
 - User can click to view the details of maps.
-- User can click to search through different types of purchasable skins from the in-game shop.
+- User can view purchasable skins from the in-game shop.
+- User can search skins by specific weapon or skin name.
 
 ## Stretch Features
 
 - User can favorite a skin.
-- User can delete their favorite skin.
+- User can delete a favorite skin.
 - User can view their favorite skins.
   
 ## Link Demo
