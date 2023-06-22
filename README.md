@@ -1,8 +1,14 @@
+<p align="center">
+  <img src="https://github.com/restropiajr/PlayValorant/assets/66459527/ce53fc3e-8adc-4dec-ad07-6568b26a0144" width=50% height=50%>
+</p>
+
 # PlayValorant
 
 A dynamic website that allow users to view game information for Valorant by Riot Games.
 
 ## Why I Built This
+
+Valorant was the first FPS game that I found myself consistently playing solo or with friends. It taught me that practice is key and I hope to do implement the same principles with my web development journey.
 
 ## Technologies
 
