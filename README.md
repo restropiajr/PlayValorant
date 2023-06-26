@@ -28,7 +28,7 @@ I wanted to build a mock Valorant website because it's a perfect chance for me t
 - User can click to view the details of agents.
 - User can click to view the details of weapons.
 - User can click to view the details of maps.
-- User can view purchasable skins from the in-game shop.
+- User can click to view purchasable skins from the in-game shop.
 - User can search skins by specific weapon or skin name.
 
 ## Stretch Features
