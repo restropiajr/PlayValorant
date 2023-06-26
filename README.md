@@ -39,7 +39,7 @@ I wanted to build a mock Valorant website because it's a perfect chance for me t
   
 ## Link Demo
 
-Try the website at [restropiajr.github.io/PlayValorant/](restropiajr.github.io/PlayValorant/)
+Try the website at https://restropiajr.github.io/PlayValorant/
 
 ## Preview
 
