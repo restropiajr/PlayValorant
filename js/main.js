@@ -541,6 +541,15 @@ function renderMap(map) {
     case 'Haven':
       mapDescription = 'Haven is a large, three-site map that provides a variety of options for attackers and defenders. It offers a mix of open spaces, tight corridors, and elevated platforms, allowing for versatile strategies and dynamic encounters.';
       break;
+    case 'Piazza':
+      mapDescription = 'Piazza takes you to a charming Mediterranean coastal town, with narrow alleys, open squares, and verticality that immerse you in its picturesque setting.';
+      break;
+    case 'District':
+      mapDescription = 'District transports you to a futuristic metropolis, featuring towering skyscrapers, neon lights, and a mix of tight corridors, expansive plazas, and vertical elements for fast-paced, strategic gameplay.';
+      break;
+    case 'Kasbah':
+      mapDescription = 'Kasbah invites you to explore an ancient Moroccan fortress, offering narrow alleys, hidden courtyards, and multi-level structures, creating a diverse and tactical environment for thrilling encounters.';
+      break;
     default:
       mapDescription = 'Unknown map.';
       break;
