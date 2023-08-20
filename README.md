@@ -6,7 +6,7 @@
 
 <div align="center">
   
- **A dynamic website that allows users to view game information for Valorant by Riot Games.**
+ **An interactive website designed to provide users with a diverse range of in-game information related to Valorant, developed by Riot Games.**
  
 </div>
 
