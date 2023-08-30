@@ -513,49 +513,23 @@ function renderMap(map) {
 
   const $mapDescription = document.createElement('p');
   let mapDescription = null;
-  switch (map.displayName) {
-    case 'Ascent':
-      mapDescription = 'Ascent is a city-themed map set in Italy. It features a balance of open spaces and tight corners, allowing for both long-range and close-quarters engagements. The map\'s unique feature is its doors that can be opened or closed to control sightlines.';
-      break;
-    case 'Split':
-      mapDescription = 'Split is an urban map set in an unspecified East Asian city. It consists of a large central area with a vertical split, requiring players to navigate through narrow pathways, ropes, and elevated platforms. It offers challenging gameplay for both attackers and defenders.';
-      break;
-    case 'Fracture':
-      mapDescription = 'Fracture is a futuristic map with a distinct fracture running through its center. It offers a unique layout and verticality, encouraging dynamic gameplay and strategic positioning.';
-      break;
-    case 'Bind':
-      mapDescription = 'Bind is a desert-themed map set in Morocco. It is known for its narrow corridors, tight angles, and multiple teleportation opportunities, providing various strategies for players.';
-      break;
-    case 'Breeze':
-      mapDescription = 'Breeze is a tropical-themed map set on a remote island. It offers a more spacious layout compared to other maps, with long sightlines, open areas, and multiple flanking routes.';
-      break;
-    case 'Lotus':
-      mapDescription = 'Lotus is set in a tranquil Asian-inspired garden. It features a serene aesthetic with flowing water elements, offering a blend of tight corridors, open spaces, and verticality.';
-      break;
-    case 'Pearl':
-      mapDescription = 'Pearl is set in a luxurious casino in Monaco. It has a glamorous and vibrant atmosphere, incorporating open areas, narrow hallways, and elevated platforms.';
-      break;
-    case 'Icebox':
-      mapDescription = 'Icebox is a frosty, Arctic-themed map set in a remote location. It features multiple ziplines, verticality, and a mix of open areas and narrow hallways.';
-      break;
-    case 'Haven':
-      mapDescription = 'Haven is a large, three-site map that provides a variety of options for attackers and defenders. It offers a mix of open spaces, tight corridors, and elevated platforms, allowing for versatile strategies and dynamic encounters.';
-      break;
-    case 'Piazza':
-      mapDescription = 'Piazza takes you to a charming Mediterranean coastal town, with narrow alleys, open squares, and verticality that immerse you in its picturesque setting.';
-      break;
-    case 'District':
-      mapDescription = 'District transports you to a futuristic metropolis, featuring towering skyscrapers, neon lights, and a mix of tight corridors, expansive plazas, and vertical elements for fast-paced, strategic gameplay.';
-      break;
-    case 'Kasbah':
-      mapDescription = 'Kasbah invites you to explore an ancient Moroccan fortress, offering narrow alleys, hidden courtyards, and multi-level structures, creating a diverse and tactical environment for thrilling encounters.';
-      break;
-    case 'Sunset':
-      mapDescription = 'Sunset is a crisis at a nearby kingdom facility that jeopardizes the neighborhood, leading to a journey that involves a stop at a beloved food truck before engaging in battles across the city on a classic three-lane map.';
-      break;
-    default:
-      mapDescription = 'Unknown map.';
-      break;
+  if (map.narrativeDescription) {
+    mapDescription = map.narrativeDescription;
+  } else {
+    switch (map.displayName) {
+      case 'Piazza':
+        mapDescription = 'Piazza takes you to a charming Mediterranean coastal town, with narrow alleys, open squares, and verticality that immerse you in its picturesque setting.';
+        break;
+      case 'District':
+        mapDescription = 'District transports you to a futuristic metropolis, featuring towering skyscrapers, neon lights, and a mix of tight corridors, expansive plazas, and vertical elements for fast-paced, strategic gameplay.';
+        break;
+      case 'Kasbah':
+        mapDescription = 'Kasbah invites you to explore an ancient Moroccan fortress, offering narrow alleys, hidden courtyards, and multi-level structures, creating a diverse and tactical environment for thrilling encounters.';
+        break;
+      default:
+        mapDescription = 'Unknown map.';
+        break;
+    }
   }
 
   $mapDescription.textContent = mapDescription;
