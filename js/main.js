@@ -550,6 +550,9 @@ function renderMap(map) {
     case 'Kasbah':
       mapDescription = 'Kasbah invites you to explore an ancient Moroccan fortress, offering narrow alleys, hidden courtyards, and multi-level structures, creating a diverse and tactical environment for thrilling encounters.';
       break;
+    case 'Sunset':
+      mapDescription = 'Sunset is a crisis at a nearby kingdom facility that jeopardizes the neighborhood, leading to a journey that involves a stop at a beloved food truck before engaging in battles across the city on a classic three-lane map.';
+      break;
     default:
       mapDescription = 'Unknown map.';
       break;
